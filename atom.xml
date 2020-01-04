@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://WalkingPineapple.github.io</id>
+    <title>Gridea</title>
+    <updated>2020-01-04T15:41:54.089Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://WalkingPineapple.github.io"/>
+    <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
+    <subtitle>一个自己都不知道写些啥的博客~
+生活|技术|娱乐| </subtitle>
+    <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
+    <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Getting Started with Videos-文档翻译]]></title>
+        <id>https://WalkingPineapple.github.io/post/getting-started-with-videos-wen-dang-fan-yi</id>
+        <link href="https://WalkingPineapple.github.io/post/getting-started-with-videos-wen-dang-fan-yi">
+        </link>
+        <updated>2020-01-04T15:37:34.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>题注：在学习图像识别时，看到这篇文章，但无奈英语太渣，就自己翻译了一篇</strong></p>
+<h2 id="视频入门">视频入门</h2>
+<h3 id="目标">目标</h3>
+]]></summary>
+        <content type="html"><![CDATA[<p><strong>题注：在学习图像识别时，看到这篇文章，但无奈英语太渣，就自己翻译了一篇</strong></p>
+<h2 id="视频入门">视频入门</h2>
+<h3 id="目标">目标</h3>
+<!-- more -->
+<ul>
+<li>学习读取视频，播放视频和保存视频</li>
+<li>学习从相机中捕捉视频并且播放视频</li>
+<li>你讲学习到两个函数 cv2.videoCapture(),cv2.ViedoWriter()</li>
+</ul>
+<h3 id="从相机中捕捉视频">从相机中捕捉视频</h3>
+<p>通常，我们必须用摄像机捕捉直播流。OpenCV为此提供了一个非常简单的接口。让我们从摄像机中捕获一个视频(我正在使用我的笔记本电脑内置的网络摄像头)，将它转换成灰度视频并显示出来。而我们的任务刚刚开始。</p>
+<p>为了捕获视频，你需要一个创建一个<strong>VedioCapture</strong>对象，它的参数可以是设备的索引或者视频文件名字，设备索引只是用来选择我们使用哪个摄像头，通常，我们只会去连接一个摄像头，我们可以传入<strong>0</strong> 或 <strong>-1</strong>，当然，你也可以通过传递<strong>1</strong>去选择第二个摄像头，之后你就可以逐帧捕获，最后不要忘记将它释放了</p>
+<pre><code class="language-python"># 导入模块
+import numpy as npimport cv2
+#OpenCv的版本是3.X.X，但是为什么要导入CV2 ？
+# cv2表示使用的是C++的API，历史 遗留问题
+.# 创建一个视频捕捉对象
+cap=cv2.VideoCapture(0)
+while(True):   
+# 捕捉一帧  
+ret,frame=cap.read()    
+# 对帧进行操作    
+gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)   
+# 显示结果  
+cv2.imshow('frame',gray)  
+if cv2.waitKey(1) &amp; 0xFF == ord('q'):     
+break        
+# 释放摄像头    
+cap.release() 
+cv2.destroyAllWindows()
+</code></pre>
+<p>cap.read() 返回的是一个布尔值（True/False），如果我们捕捉到视频能够被正确的读取，它返回真，反之则为假，当然，你也可以通过它来检查视频的结尾。<br>
+有些时候 ，cap对象的捕获可能沒有初始化，遇到这种情况，代码会报错，你可以通过<strong>cap.isOpened()</strong> 方法来检查是否初始化，如果返回真，则初始化，否则要使用<strong>cap.open（）</strong> 完成初始化。<br>
+你也可以通过cap.get(propld)去查看一些视频的属性，propld是一个从0到18的数字，每个数字都代表了一个视频的属性（如果它适用于该视频） ，具体的数值参数可以查阅openCV官网，其中一些值，我们可以通过cap.set(propld,value)来修改你想要的值。</p>
+<p>例如，我可以通过cap.get(3)和cap.get(4)来检查帧的宽度和高度。默认是640x480。但是我想修改成320x240。只需要使用ret = cap.set(3,320)和ret = cap.set(4,240)。</p>
+<pre><code>注意：如果你遇到了错误，请确保使用任何其他相机应用程序(如Linux中的Cheese)相机都能正常工作。
+</code></pre>
+<h3 id="播放视频文件">播放视频文件</h3>
+<p>和相机捕获一样，只用去更改相机的缩印和视频的文件名字即可，在我们显示帧的时候，用若干时间来等待目标对象<strong>cv2.waitKey()</strong>,如果太低，视频播放将很快，如果太高了，则视频播放很慢（这就是慢动作处理的方法，通常情况下，25毫秒即可），</p>
+<pre><code class="language-python">
+#导入模块
+import numpy as np
+import cv2
+#加载视频
+cap=cv2.VideoCapture('demo.mp4')
+while(True):   
+ret,frame=cap.read()  
+gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY) 
+cv2.imshow('frame',gray) 
+if cv2.waitKey(3) &amp; 0xFF == ord('q'):    
+    break
+cap.release()
+cv2.destroyAllWindows()
+</code></pre>
+<pre><code>注意：确保安装了正确版本的ffmpeg或gstreamer。有时，由于ffmpeg/gstreamer的错误安装，使用视频捕获非常麻烦。
+</code></pre>
+<h3 id="保存视频">保存视频</h3>
+<p>对于我们捕获的视频，我们想保存他，对于图像，很简单，使用<strong>cv2.imwrite()</strong> ，这里需要多做一点工作。<br>
+这次我们创建了一个视频写入对象<strong>VedioWrite()</strong> ,我们应该去指定我们输出的文件名字<br>
+(eg: output.avi)，然后我们再指定一个FourCC码（具体看下面介绍），然后我们传递每秒帧数(fps)和帧大小。最后一个是<strong>isColor</strong><br>
+标志。如果为True，则编码为色彩帧，否则将编码为灰度帧。</p>
+<p>FourCC是一个4字符编码码，用于指定视频编解码器。可用代码的列表可以在fourcc.org上可以找到。它依赖于平台。遵循编解码器对我来说是可行的。</p>
+<ul>
+<li>对于Fedora: DIVX, XVID, MJPG, X264, WMV1, WMV2。(XVID的更好。MJPG的结果是大尺寸的视频。X264视频非常小)</li>
+<li>对于Windows：DIVX(有待测试和增加)</li>
+<li>对于OS:未测试<br>
+FourCC编码，对于MJPG格式可以用cv2.VideoWriter_fourcc('M'，'J'，'P'，'G')或cv2.VideoWriter_fourcc(* ' MJPG ) 的形式传递。<br>
+下面的代码从相机捕获并且把每一帧从垂直方向上保存。</li>
+</ul>
+<pre><code class="language-python"># 导入模块
+
+import numpy as np
+import cv2
+
+cap = cv2.VideoCapture(0)
+
+# 定义编码格式，并且创建VideoWriter对象
+
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('demo1.avi',fourcc,-1,  (640,480))
+while(cap.isOpened()):
+    ret, frame = cap.read()
+    if ret==True:
+        frame = cv2.flip(frame,1)
+
+        # 写入帧
+        out.write(frame)
+
+        cv2.imshow('frame',frame)
+        if cv2.waitKey(1) &amp; 0xFF == ord('q'):
+            break
+    else:
+        break
+
+# 释放
+cap.release()
+out.release()
+cv2.destroyAllWindows()
+</code></pre>
+<p>**附：源地址：https://docs.opencv.org/3.0beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html **</p>
+]]></content>
+    </entry>
+</feed>

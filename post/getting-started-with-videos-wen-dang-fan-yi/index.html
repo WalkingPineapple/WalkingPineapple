@@ -1,0 +1,268 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Getting Started with Videos-文档翻译 | Gridea</title>
+<meta name="description" content="一个自己都不知道写些啥的博客~
+生活|技术|娱乐| " />
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1578152508435">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://WalkingPineapple.github.io">
+  <img class="avatar" src="https://WalkingPineapple.github.io/images/avatar.png?v=1578152508435" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    一个自己都不知道写些啥的博客~
+生活|技术|娱乐| 
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Getting Started with Videos-文档翻译
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-01-04
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><strong>题注：在学习图像识别时，看到这篇文章，但无奈英语太渣，就自己翻译了一篇</strong></p>
+<h2 id="视频入门">视频入门</h2>
+<h3 id="目标">目标</h3>
+<!-- more -->
+<ul>
+<li>学习读取视频，播放视频和保存视频</li>
+<li>学习从相机中捕捉视频并且播放视频</li>
+<li>你讲学习到两个函数 cv2.videoCapture(),cv2.ViedoWriter()</li>
+</ul>
+<h3 id="从相机中捕捉视频">从相机中捕捉视频</h3>
+<p>通常，我们必须用摄像机捕捉直播流。OpenCV为此提供了一个非常简单的接口。让我们从摄像机中捕获一个视频(我正在使用我的笔记本电脑内置的网络摄像头)，将它转换成灰度视频并显示出来。而我们的任务刚刚开始。</p>
+<p>为了捕获视频，你需要一个创建一个<strong>VedioCapture</strong>对象，它的参数可以是设备的索引或者视频文件名字，设备索引只是用来选择我们使用哪个摄像头，通常，我们只会去连接一个摄像头，我们可以传入<strong>0</strong> 或 <strong>-1</strong>，当然，你也可以通过传递<strong>1</strong>去选择第二个摄像头，之后你就可以逐帧捕获，最后不要忘记将它释放了</p>
+<pre><code class="language-python"># 导入模块
+import numpy as npimport cv2
+#OpenCv的版本是3.X.X，但是为什么要导入CV2 ？
+# cv2表示使用的是C++的API，历史 遗留问题
+.# 创建一个视频捕捉对象
+cap=cv2.VideoCapture(0)
+while(True):   
+# 捕捉一帧  
+ret,frame=cap.read()    
+# 对帧进行操作    
+gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)   
+# 显示结果  
+cv2.imshow('frame',gray)  
+if cv2.waitKey(1) &amp; 0xFF == ord('q'):     
+break        
+# 释放摄像头    
+cap.release() 
+cv2.destroyAllWindows()
+</code></pre>
+<p>cap.read() 返回的是一个布尔值（True/False），如果我们捕捉到视频能够被正确的读取，它返回真，反之则为假，当然，你也可以通过它来检查视频的结尾。<br>
+有些时候 ，cap对象的捕获可能沒有初始化，遇到这种情况，代码会报错，你可以通过<strong>cap.isOpened()</strong> 方法来检查是否初始化，如果返回真，则初始化，否则要使用<strong>cap.open（）</strong> 完成初始化。<br>
+你也可以通过cap.get(propld)去查看一些视频的属性，propld是一个从0到18的数字，每个数字都代表了一个视频的属性（如果它适用于该视频） ，具体的数值参数可以查阅openCV官网，其中一些值，我们可以通过cap.set(propld,value)来修改你想要的值。</p>
+<p>例如，我可以通过cap.get(3)和cap.get(4)来检查帧的宽度和高度。默认是640x480。但是我想修改成320x240。只需要使用ret = cap.set(3,320)和ret = cap.set(4,240)。</p>
+<pre><code>注意：如果你遇到了错误，请确保使用任何其他相机应用程序(如Linux中的Cheese)相机都能正常工作。
+</code></pre>
+<h3 id="播放视频文件">播放视频文件</h3>
+<p>和相机捕获一样，只用去更改相机的缩印和视频的文件名字即可，在我们显示帧的时候，用若干时间来等待目标对象<strong>cv2.waitKey()</strong>,如果太低，视频播放将很快，如果太高了，则视频播放很慢（这就是慢动作处理的方法，通常情况下，25毫秒即可），</p>
+<pre><code class="language-python">
+#导入模块
+import numpy as np
+import cv2
+#加载视频
+cap=cv2.VideoCapture('demo.mp4')
+while(True):   
+ret,frame=cap.read()  
+gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY) 
+cv2.imshow('frame',gray) 
+if cv2.waitKey(3) &amp; 0xFF == ord('q'):    
+    break
+cap.release()
+cv2.destroyAllWindows()
+</code></pre>
+<pre><code>注意：确保安装了正确版本的ffmpeg或gstreamer。有时，由于ffmpeg/gstreamer的错误安装，使用视频捕获非常麻烦。
+</code></pre>
+<h3 id="保存视频">保存视频</h3>
+<p>对于我们捕获的视频，我们想保存他，对于图像，很简单，使用<strong>cv2.imwrite()</strong> ，这里需要多做一点工作。<br>
+这次我们创建了一个视频写入对象<strong>VedioWrite()</strong> ,我们应该去指定我们输出的文件名字<br>
+(eg: output.avi)，然后我们再指定一个FourCC码（具体看下面介绍），然后我们传递每秒帧数(fps)和帧大小。最后一个是<strong>isColor</strong><br>
+标志。如果为True，则编码为色彩帧，否则将编码为灰度帧。</p>
+<p>FourCC是一个4字符编码码，用于指定视频编解码器。可用代码的列表可以在fourcc.org上可以找到。它依赖于平台。遵循编解码器对我来说是可行的。</p>
+<ul>
+<li>对于Fedora: DIVX, XVID, MJPG, X264, WMV1, WMV2。(XVID的更好。MJPG的结果是大尺寸的视频。X264视频非常小)</li>
+<li>对于Windows：DIVX(有待测试和增加)</li>
+<li>对于OS:未测试<br>
+FourCC编码，对于MJPG格式可以用cv2.VideoWriter_fourcc('M'，'J'，'P'，'G')或cv2.VideoWriter_fourcc(* ' MJPG ) 的形式传递。<br>
+下面的代码从相机捕获并且把每一帧从垂直方向上保存。</li>
+</ul>
+<pre><code class="language-python"># 导入模块
+
+import numpy as np
+import cv2
+
+cap = cv2.VideoCapture(0)
+
+# 定义编码格式，并且创建VideoWriter对象
+
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('demo1.avi',fourcc,-1,  (640,480))
+while(cap.isOpened()):
+    ret, frame = cap.read()
+    if ret==True:
+        frame = cv2.flip(frame,1)
+
+        # 写入帧
+        out.write(frame)
+
+        cv2.imshow('frame',frame)
+        if cv2.waitKey(1) &amp; 0xFF == ord('q'):
+            break
+    else:
+        break
+
+# 释放
+cap.release()
+out.release()
+cv2.destroyAllWindows()
+</code></pre>
+<p>**附：源地址：https://docs.opencv.org/3.0beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html **</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%A7%86%E9%A2%91%E5%85%A5%E9%97%A8">视频入门</a>
+<ul>
+<li><a href="#%E7%9B%AE%E6%A0%87">目标</a></li>
+<li><a href="#%E4%BB%8E%E7%9B%B8%E6%9C%BA%E4%B8%AD%E6%8D%95%E6%8D%89%E8%A7%86%E9%A2%91">从相机中捕捉视频</a></li>
+<li><a href="#%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6">播放视频文件</a></li>
+<li><a href="#%E4%BF%9D%E5%AD%98%E8%A7%86%E9%A2%91">保存视频</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
