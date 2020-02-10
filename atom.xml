@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-02-09T08:44:52.384Z</updated>
+    <updated>2020-02-10T13:59:54.106Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,59 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[图像金字塔]]></title>
+        <id>https://WalkingPineapple.github.io/post/tu-xiang-jin-zi-ta</id>
+        <link href="https://WalkingPineapple.github.io/post/tu-xiang-jin-zi-ta">
+        </link>
+        <updated>2020-02-10T13:58:04.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="图像金字塔">图像金字塔</h2>
+<p>高分辨率图像产生的低分辨率图像集合。</p>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581343121950.png" alt="" loading="lazy"></figure>
+<h3 id="高斯金字塔">高斯金字塔</h3>
+<pre><code>将原图像不断使用高斯滤波器进行滤波，将滤波图像删除偶数行和偶数列删除（向下采样），通过向下采样，原图像像素值丢失，分辨率减小。
+dst=cv2.pyrdown(src,dstsize,borderType)
+- src:原图像
+- dstsize：目标图像，可选参数，默认情况下，输出图像的大小为Size((src.cols+1)/2, (src.rows+1)/2)
+- borderType：边框
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">down=cv2.pyrDown(img)
+img_show('down',down)
+print(down.shape)
+</code></pre>
+<pre><code>同时， 向上采样则是通过新值为零的行和列，在用先前的卷积核*4和放大的图像卷积，保证我们得到的像素值都在[0,255]以内
+</code></pre>
+<p>dst=cv2.pyrup(src,dstsize,borderType)<br>
+- src:原图像<br>
+- dstsize：目标图像，可选参数，默认情况下，输出图像的大小为Size(src.col<em>2, src.rows</em>2)<br>
+- borderType：边框<br>
+<strong>实际代码演示</strong></p>
+<pre><code class="language-python">#向上采样
+up=cv2.pyrUp(img)
+img_show('up',up)
+print(up.shape)
+</code></pre>
+<p><img src="https://WalkingPineapple.github.io/post-images/1581343142999.png" alt="" loading="lazy"><br>
+PS:向下采样和向上采样的操作都是不可逆的。</p>
+<h3 id="拉普拉斯金字塔">拉普拉斯金字塔</h3>
+<p>通过拉普拉斯金字塔，我们可以向上采样的时能够恢复较高的原始图像。具体操作如下：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi mathvariant="normal">L</mi><mi mathvariant="normal">i</mi></msub><mo>=</mo><msub><mi mathvariant="normal">G</mi><mi mathvariant="normal">i</mi></msub><mo>−</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">U</mi><mi mathvariant="normal">p</mi></mrow><mrow><mo fence="true">(</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">D</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">w</mi><mi mathvariant="normal">n</mi></mrow><mrow><mo fence="true">(</mo><msub><mi mathvariant="normal">G</mi><mi mathvariant="normal">i</mi></msub><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathrm{L}_{\mathrm{i}}=\mathrm{G}_{\mathrm{i}}-\mathrm{PyrUp}\left(\mathrm{PyrDown}\left(\mathrm{G}_{\mathrm{i}}\right)\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">i</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">G</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">i</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">P</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span><span class="mord mathrm">r</span><span class="mord mathrm">U</span><span class="mord mathrm">p</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathrm">P</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span><span class="mord mathrm">r</span><span class="mord mathrm">D</span><span class="mord mathrm">o</span><span class="mord mathrm" style="margin-right:0.01389em;">w</span><span class="mord mathrm">n</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord mathrm">G</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">i</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></p>
+<ul>
+<li>Li：拉普拉斯金字塔第i层</li>
+<li>Gi：高斯金字塔的第i层<br>
+<img src="https://WalkingPineapple.github.io/post-images/1581343155632.png" alt="" loading="lazy"><br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">#拉普拉斯金字塔
+up_1=cv2.pyrUp(down)
+result=img-up_1
+img_show('result',result)
+print(result.shape)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Canny边缘检测]]></title>
         <id>https://WalkingPineapple.github.io/post/canny-bian-yuan-jian-ce</id>
