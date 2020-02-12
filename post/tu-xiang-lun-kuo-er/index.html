@@ -1,0 +1,350 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>图像轮廓（二） | 摇摇晃摇</title>
+<meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
+" />
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1581492440288">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://WalkingPineapple.github.io">
+  <img class="avatar" src="https://WalkingPineapple.github.io/images/avatar.png?v=1581492440288" alt="">
+  </a>
+  <h1 class="site-title">
+    摇摇晃摇
+  </h1>
+  <p class="site-description">
+    黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              图像轮廓（二）
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-02-12
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://WalkingPineapple.github.io/tag/M0loczjJq" class="post-tag">
+                  # OpenCV
+                </a>
+              
+                <a href="https://WalkingPineapple.github.io/tag/V2V6vX6Gc" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://WalkingPineapple.github.io/post-images/tu-xiang-lun-kuo-er.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="图像轮廓">图像轮廓</h2>
+<h3 id="图像拟合">图像拟合</h3>
+<p>用一个多边形去拟合我们需要的轮廓。</p>
+<h4 id="边界矩形">边界矩形</h4>
+<p>retval=cv2.boundingRect(array)</p>
+<ul>
+<li>
+<p>retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和高度，分别是:</p>
+<ul>
+<li>矩形左上角的X坐标</li>
+<li>矩形左上角的y坐标</li>
+<li>矩形边界的x方向的长度</li>
+<li>矩形边界的y方向的长度</li>
+</ul>
+</li>
+<li>
+<p>array：灰度图像或者轮廓</p>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581492330618.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h4 id="边界圆形">边界圆形</h4>
+<p>center，radius=cv2.minEnclosingCircle(points)</p>
+<ul>
+<li>center:包围圆形的圆心</li>
+<li>radius：包围圆形的半径</li>
+<li>points:轮廓<br>
+<strong>实际代码展示</strong></li>
+</ul>
+<pre><code class="language-python">import  cv2
+import  numpy as np
+import matplotlib.pyplot as plt
+
+def img_show(name,img):
+    cv2.imshow('name',img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+img=cv2.imread('rectangle.png')
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+img_show(&quot;con&quot;,thresh)
+binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+
+
+for i in range (len(contours)):
+    x, y, w, h = cv2.boundingRect(contours[i])
+    (x1,y1),r=cv2.minEnclosingCircle(contours[i])
+    center=(int(x1),int(y1))
+    radius=int(r)
+    #矩形包边框
+    result = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),5)
+    #最小包围圆形
+    result1=cv2.circle(img,center,radius,(0,255,0),5)
+
+img_show('result',result)
+img_show('result1',result1)
+</code></pre>
+<p>效果图：<br>
+<img src="https://WalkingPineapple.github.io/post-images/1581492353756.png" alt="" loading="lazy"><br>
+#最优拟合椭圆<br>
+retval=cv2.fitEllipse(points)</p>
+<ul>
+<li>retval：返回一个外界矩形，这个外接矩形的质心、宽、高、旋转角度等参数和椭圆中的中心点、轴长度、旋转角度想吻合</li>
+<li>points：轮廓<br>
+#最优拟合直线<br>
+line=cv2.fitLine.（points, distType, param, reps, aeps）</li>
+<li>line：返回值，直线参数</li>
+<li>points：轮廓</li>
+<li>distType：距离类型，最优即是距离最短</li>
+<li>param：距离参数，与所选距离类型有关，设置为0会自动选择最优值</li>
+<li>reps:拟合直线的径向精度，通常情况下：0.01</li>
+<li>aeps：拟合直线的角度精度，通常情况下：0.01<br>
+#最小外包三角形<br>
+retval, triangle =CV2. minEnclosingTriangle(points)</li>
+<li>retval:三角形面积</li>
+<li>triangle：三角形的顶点集</li>
+</ul>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">img=cv2.imread('ellipse.png')
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+img_show(&quot;con&quot;,thresh)
+binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+rows,cols=img.shape[:2]
+
+for i in range (len(contours)):
+    # x, y, w, h = cv2.boundingRect(contours[i])
+    # (x1,y1),r=cv2.minEnclosingCircle(contours[i])
+    # center=(int(x1),int(y1))
+    # radius=int(r)
+    # #矩形包边框
+    # result = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),5)
+    # result1=cv2.circle(img,center,radius,(0,255,0),5)
+
+    #椭圆
+    ellipse=cv2.fitEllipse(contours[i])
+    result=cv2.ellipse(img,ellipse,(0,255,0),5)
+    #直线（欧氏距离)
+    x,y,x1,y1=cv2.fitLine(contours[i],cv2.DIST_L2,0,0.01,0.01)
+    lefty=int((-x1*y/x+y1))
+    righty=int(((cols-x1)*y/x)+y1)
+    result1=cv2.line(img,(cols-1,righty),(0,lefty),(0,0,255),5)
+    #三角形
+    area,triangle=cv2.minEnclosingTriangle(contours[i])
+    for j in range(0,3):
+        result2=cv2.line(img,tuple(triangle[j][0]),tuple(triangle[(j+1)%3][0]),(18,239,252),5)
+
+
+
+img_show('result',result)
+img_show('result1',result1)
+img_show('result2', result2)
+</code></pre>
+<p>效果图如下：<br>
+<img src="https://WalkingPineapple.github.io/post-images/1581492369613.png" alt="" loading="lazy"></p>
+<h4 id="轮廓近似">轮廓近似</h4>
+<p>拟合一个逼近多边形轮廓<br>
+approxCurve= cv2. approxPolyDP（curve, epsilon, closed）</p>
+<ul>
+<li>apprpxCurve：返回值 逼近多边形的点集</li>
+<li>curve：轮廓</li>
+<li>epsilon：精度，原始轮廓的边界点与逼近多边形边界之间的最大距离</li>
+<li>closed：True：封闭，反之，不封闭<br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">epsilon = 0.02*cv2.arcLength(contours[0],True)
+approx = cv2.approxPolyDP(contours[0],epsilon,True)
+draw_img = img.copy()
+res = cv2.drawContours(draw_img, [approx], -1, (0, 255, 0), 2)
+img_show('res',res)
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581492393772.png" alt="" loading="lazy"></figure>
+<h4 id="凸包">凸包</h4>
+<p>通过轮廓上的点去构成一个多边形，并且这个多边形会包含原有的轮廓。</p>
+<p>hull=cv2.convexHull(points,clockwise,returnPoints)</p>
+<ul>
+<li>hull:凸角点</li>
+<li>clockwise:控制凸角点是顺时针（True）方向还是逆时针（False）方向排列。</li>
+<li>returnPoints：如果为True，则返回凸角点的坐标值，如果为False，则返回凸角点的索引<br>
+在凸包中， 凸包与轮廓之间的部分，我们就称为凸缺陷。<br>
+convexityDefects=cv2.convexityDefects(contour,convexhull)</li>
+<li>contour：轮廓</li>
+<li>convexhull：凸包，在获取凸包的过程中，必须返回凸角点的索引<br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">#凸包
+#返回坐标值
+hull_xy=cv2.convexHull(contours[0],clockwise=True,returnPoints=True)
+print(&quot;凸角点的坐标值为&quot;,hull_xy)
+hull_index=cv2.convexHull(contours[0],clockwise=True,returnPoints=False)
+print(&quot;凸角点的索引&quot;,hull_index)
+#绘制凸包
+result=cv2.polylines(img,[hull_xy],True,(0,255,0),5)
+img_show('convexity',result)
+</code></pre>
+<p>效果图：</p>
+<figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581492403515.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://WalkingPineapple.github.io/post-images/1581492411778.png" alt="" loading="lazy"></figure>
+<p>从图中不难看出，凸包的凸角点都是凸的，凸包内，任意三个点的内角都小与180°。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9B%BE%E5%83%8F%E8%BD%AE%E5%BB%93">图像轮廓</a>
+<ul>
+<li><a href="#%E5%9B%BE%E5%83%8F%E6%8B%9F%E5%90%88">图像拟合</a>
+<ul>
+<li><a href="#%E8%BE%B9%E7%95%8C%E7%9F%A9%E5%BD%A2">边界矩形</a></li>
+<li><a href="#%E8%BE%B9%E7%95%8C%E5%9C%86%E5%BD%A2">边界圆形</a></li>
+<li><a href="#%E8%BD%AE%E5%BB%93%E8%BF%91%E4%BC%BC">轮廓近似</a></li>
+<li><a href="#%E5%87%B8%E5%8C%85">凸包</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-yi">
+              <h3 class="post-title">
+                图像轮廓（一）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  生活|技术|娱乐|抱怨 | 
+  <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
