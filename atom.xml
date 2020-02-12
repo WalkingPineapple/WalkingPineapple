@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-02-12T07:27:22.648Z</updated>
+    <updated>2020-02-12T12:39:20.664Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,78 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[图像直方图]]></title>
+        <id>https://WalkingPineapple.github.io/post/tu-xiang-zhi-fang-tu</id>
+        <link href="https://WalkingPineapple.github.io/post/tu-xiang-zhi-fang-tu">
+        </link>
+        <updated>2020-02-12T12:35:44.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="图像直方图">图像直方图</h1>
+<h2 id="图像直方图-2">图像直方图</h2>
+<p>通过直方图，可以统计出图像中各个像素的灰度级出现的次数。通常情况下，我们的图像有256个灰度级[0,255]。</p>
+<h4 id="histcv2calchistimageschannelsmaskhistsizerangesaccumulate">hist=cv2.calcHist(images,channels,mask,histSize,ranges,accumulate)</h4>
+<p>-hist：返回一个一维数组，数组内元素是各个灰度级的个数</p>
+<ul>
+<li>images: 原图像图像格式为 uint8 或 ﬂoat32。当传入函数时应 用中括号 [] 括来例如[img]</li>
+<li>channels: 同样用中括号括来它会告函数我们统幅图 像的直方图。如果入图像是灰度图它的值就是 [0]如果是彩色图像 的传入的参数可以是 [0][1][2] 它们分别对应着 BGR。</li>
+<li>mask: 掩模图像。统整幅图像的直方图就把它为 None。但是如 果你想统图像某一分的直方图的你就制作一个掩模图像并 使用它。
+<ul>
+<li>构造掩膜，通常先构造一个像素值都为0的二维数组，在将数组中的指定区域设为255，我们就可以得到掩膜图像</li>
+</ul>
+</li>
+<li>histSize:BINS的数目。也应用中[]括来</li>
+<li>ranges: 像素值范围常为 [0,255]</li>
+<li>accumulate:累积标识，默认值为False，为True： 直方图开始计算不清零，计算的是多个直方图的累积结果，常用于一组图像计算直方图。<br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">img=cv2.imread('timg.jpg',cv2.IMREAD_GRAYSCALE)
+img_show('img',img)
+
+#直方图处理
+
+hist1=cv2.calcHist([img],[0],None,[256],[0,255])
+print(hist1.shape)
+plt.plot(hist1, color='b')
+plt.show()
+
+# 掩膜操作
+
+#构造掩膜
+mask = np.zeros(img.shape[:2], np.uint8)
+print(mask)
+mask[150:200,150:400]=255
+img_show(&quot;mask&quot;,mask)
+
+masked_img = cv2.bitwise_and(img, img, mask=mask)#与操作
+img_show('mask_img',masked_img)
+
+#掩膜操作
+hist2=cv2.calcHist([img],[0],mask,[256],[0,255])
+print(hist2.shape)
+plt.plot(hist2, color='b')
+plt.show()
+
+</code></pre>
+<p><strong>效果图</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581511050130.png" alt="" loading="lazy"></figure>
+<h2 id="直方图均衡化">直方图均衡化</h2>
+<p>通过直方图均衡化，可以让原始图像灰度级变得均匀，色彩也就会趋于平衡，具体操作如下</p>
+<ul>
+<li>计算累计直方图</li>
+<li>对累积直方图进行区间转换<br>
+####dst=cv2.quealizeHist(src)</li>
+<li>src:单通道的原始图像</li>
+<li>dst：直方图均衡化处理的结果<br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">#直方图均衡化
+equ = cv2.equalizeHist(img)
+plt.hist(equ.ravel(),256)
+plt.show()
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581511121179.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[图像轮廓（二）]]></title>
         <id>https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-er</id>
