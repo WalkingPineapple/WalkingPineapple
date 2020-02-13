@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-02-12T12:39:20.664Z</updated>
+    <updated>2020-02-13T13:26:05.420Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,70 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[图像傅里叶变换]]></title>
+        <id>https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan</id>
+        <link href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan">
+        </link>
+        <updated>2020-02-13T13:24:12.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>傅里叶变换数学推导以后有时间补博客后</strong></p>
+<h1 id="傅里叶变换">傅里叶变换</h1>
+<p>图像处理除了对空间域处理，还可以在频率域进行处理。而将图像的空间域变换到频率域的较为广泛方法就是傅里叶变换。<br>
+<strong>傅里叶变换数学推导以后有时间补博客后</strong>，而我们只需要知道：”<strong>任何周期函数都可以表示为不同频率的正弦函数和的形式</strong>“<br>
+可以参考wiki上的一张gif如下，或者直接移步知乎大佬的掐死教程哈。</p>
+<p><img src="https://WalkingPineapple.github.io/post-images/1581600311071.gif" alt="" loading="lazy"><br>
+​<br>
+通过傅里叶变化，我们可以得到图像的高频和低频：</p>
+<ul>
+<li>高频：图像灰度变化比较剧烈，频率越大，变化就越剧烈。比如 轮廓</li>
+<li>低频：图像灰度变化比较慢，频率越小，变化就缓慢<br>
+在OpenCV中，提供了傅里叶变换和傅里叶逆变换的两个函数，先来说傅里叶变换:</li>
+</ul>
+<h2 id="opencv傅里叶变换">OpenCV傅里叶变换</h2>
+<p>cv2.dft(img,flags)</p>
+<ul>
+<li>img：原始图像，必须为np.float3格式</li>
+<li>flags：转换标志，通常为cv2.DFT_COMPLEX_OUTPUT<br>
+在通过傅里叶变换后，频率为0的分量处于左上角，为了处理方便，我们通常使用numpy.fft.fftshift()移到中心位置，最后，还需要通过cv2.magnitude()，计算出我们目标图像的幅度值，逆变换与之类似。<br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">img=cv2.imread('hh.jpg',cv2.IMREAD_GRAYSCALE)
+img_float32=np.float32(img)
+#傅里叶变换
+dft=cv2.dft(img_float32,flags=cv2.DFT_COMPLEX_OUTPUT)
+print(dft)
+dft_fit=np.fft.fftshift(dft);
+print(dft_fit)
+magnitude_spectrum = 20*np.log(cv2.magnitude(dft_fit[:,:,0],dft_fit[:,:,1]))
+print(magnitude_spectrum)
+plt.subplot(121),plt.imshow(img, cmap = 'gray')
+plt.title('Input Image'), plt.xticks([]), plt.yticks([])
+plt.subplot(122),plt.imshow(magnitude_spectrum, cmap = 'gray')
+plt.title('Magnitude Spectrum'), plt.xticks([]), plt.yticks([])
+plt.show()
+</code></pre>
+<p>​<img src="https://WalkingPineapple.github.io/post-images/1581600298591.png" alt="" loading="lazy"></p>
+<h2 id="低通滤波器和高通滤波器">低通滤波器和高通滤波器</h2>
+<p>低通滤波器和高通滤波器类似，低通滤波器就是保留低频信号，而高通则是保留高频信号，前者可以让图片变得模糊，后者则是让图像的细节（轮廓）更为增强，我们可以通过设置一个掩膜，让非保留的值都置位0即可<br>
+<strong>实际代码演示</strong></p>
+<pre><code class="language-python">#设置掩膜
+#找到中心位置
+rows,cols=img.shape
+crow,ccol=int(rows/2),int(cols/2)
+mask=np.zeros((rows,cols,2),np.uint8)
+#高通
+# mask=np.ones((rows,cols,2),np.uint8)
+mask[crow-30:crow+30,ccol-30:ccol+30]=1
+​
+fshift = dft_fit*mask
+f_ishift = np.fft.ifftshift(fshift)
+img_back = cv2.idft(f_ishift)
+img_back = cv2.magnitude(img_back[:,:,0],img_back[:,:,1])
+</code></pre>
+<p><img src="https://WalkingPineapple.github.io/post-images/1581600290575.png" alt="" loading="lazy"><br>
+字符：22 / 1,614</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[图像直方图]]></title>
         <id>https://WalkingPineapple.github.io/post/tu-xiang-zhi-fang-tu</id>
