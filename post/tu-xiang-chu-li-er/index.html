@@ -1,105 +1,113 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>图像处理（二） | 摇摇晃摇</title>
-<meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
-" />
-<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1589377005426">
+<meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明&lt;/br&gt;                                             
+">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1589473070466">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://WalkingPineapple.github.io">
-  <img class="avatar" src="https://WalkingPineapple.github.io/images/avatar.png?v=1589377005426" alt="">
-  </a>
-  <h1 class="site-title">
-    摇摇晃摇
-  </h1>
-  <p class="site-description">
-    黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
-
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://WalkingPineapple.github.io">
+        <img class="avatar" src="https://WalkingPineapple.github.io/images/avatar.png?v=1589473070466" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://WalkingPineapple.github.io">
+        <h1 class="site-title">摇摇晃摇</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              图像处理（二）
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-02-08
-              </span>
-              <span>
-                5 min read
-              </span>
-              
-                <a href="https://WalkingPineapple.github.io/tag/M0loczjJq/" class="post-tag">
-                  # OpenCV
-                </a>
-              
-                <a href="https://WalkingPineapple.github.io/tag/V2V6vX6Gc/" class="post-tag">
-                  # Python
-                </a>
-              
+          
+            <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/tu-xiang-chu-li-er.png')">
             </div>
+          
+          <h2 class="post-title">图像处理（二）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-02-08</span>
             
-              <img class="post-feature-image" src="https://WalkingPineapple.github.io/post-images/tu-xiang-chu-li-er.png" alt="">
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://WalkingPineapple.github.io/tag/M0loczjJq/">
+                    OpenCV
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://WalkingPineapple.github.io/tag/V2V6vX6Gc/">
+                    Python
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h2 id="图像处理-二">图像处理 （二）</h2>
+          </div>
+          <div class="post-content">
+            <h2 id="图像处理-二">图像处理 （二）</h2>
 <h3 id="开运算">开运算</h3>
 <pre><code>先腐蚀，后膨胀（去噪 、计数）
 opening=cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
@@ -242,96 +250,62 @@ img_show(&quot;laplacian&quot;,laplacianAbs)
 </code></pre>
 <figure data-type="image" tabindex="16"><img src="https://WalkingPineapple.github.io/post-images/1581157870764.png" alt="" loading="lazy"></figure>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E4%BA%8C">图像处理 （二）</a>
-<ul>
-<li><a href="#%E5%BC%80%E8%BF%90%E7%AE%97">开运算</a></li>
-<li><a href="#%E9%97%AD%E8%BF%90%E7%AE%97">闭运算</a></li>
-<li><a href="#%E6%A2%AF%E5%BA%A6%E8%BF%90%E7%AE%97">梯度运算</a></li>
-<li><a href="#%E7%A4%BC%E5%B8%BD%E8%BF%90%E7%AE%97">礼帽运算</a></li>
-<li><a href="#%E9%BB%91%E5%B8%BD%E8%BF%90%E7%AE%97">黑帽运算</a></li>
-<li><a href="#%E5%9B%BE%E5%83%8F%E6%A2%AF%E5%BA%A6">图像梯度</a>
-<ul>
-<li><a href="#sobel%E7%AE%97%E5%AD%90">Sobel算子</a></li>
-<li><a href="#scharr%E7%AE%97%E5%AD%90">Scharr算子</a></li>
-<li><a href="#laplacian%E7%AE%97%E5%AD%90">Laplacian算子</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://WalkingPineapple.github.io/post/tu-xiang-chu-li-yi/">
+            <a class="purple-link" href="https://WalkingPineapple.github.io/post/tu-xiang-chu-li-yi/">
               <h3 class="post-title">
-                图像处理（一）
+                下一篇：图像处理（一）
               </h3>
             </a>
           </div>
-        
+          
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  生活|技术|娱乐|抱怨 | 
-  <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
+      <div class="site-footer">
+  <div class="slogan">黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
+</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/WalkingPineapple" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  生活|技术|娱乐|抱怨 | <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
 
-  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+    </div>
+    <script type="application/javascript">
 
-  // This should probably be throttled.
-  // Especially because it triggers during smooth scrolling.
-  // https://lodash.com/docs/4.17.10#throttle
-  // You could do like...
-  // window.addEventListener("scroll", () => {
-  //    _.throttle(doThatStuff, 100);
-  // });
-  // Only not doing it here to keep this Pen dependency-free.
+hljs.initHighlightingOnLoad()
 
-  window.addEventListener("scroll", event => {
-    let fromTop = window.scrollY;
-
-    mainNavLinks.forEach((link, index) => {
-      let section = document.getElementById(decodeURI(link.hash).substring(1));
-      let nextSection = null
-      if (mainNavLinks[index + 1]) {
-        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-      }
-      if (section.offsetTop <= fromTop) {
-        if (nextSection) {
-          if (nextSection.offsetTop > fromTop) {
-            link.classList.add("current");
-          } else {
-            link.classList.remove("current");    
-          }
-        } else {
-          link.classList.add("current");
-        }
-      } else {
-        link.classList.remove("current");
-      }
-    });
-  });
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
 
-      </div>
-    </div>
+
+
+
   </body>
 </html>

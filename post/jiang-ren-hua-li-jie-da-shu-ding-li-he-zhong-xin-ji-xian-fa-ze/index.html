@@ -1,101 +1,106 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>讲人话理解“大数定理”和“中心极限法则” | 摇摇晃摇</title>
-<meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
-" />
-<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1589377005426">
+<meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明&lt;/br&gt;                                             
+">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1589473070466">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://WalkingPineapple.github.io">
-  <img class="avatar" src="https://WalkingPineapple.github.io/images/avatar.png?v=1589377005426" alt="">
-  </a>
-  <h1 class="site-title">
-    摇摇晃摇
-  </h1>
-  <p class="site-description">
-    黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
-
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://WalkingPineapple.github.io">
+        <img class="avatar" src="https://WalkingPineapple.github.io/images/avatar.png?v=1589473070466" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://WalkingPineapple.github.io">
+        <h1 class="site-title">摇摇晃摇</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              讲人话理解“大数定理”和“中心极限法则”
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-05-13
-              </span>
-              <span>
-                6 min read
-              </span>
-              
-                <a href="https://WalkingPineapple.github.io/tag/4ISn92sQg/" class="post-tag">
-                  # 实用
-                </a>
-              
+          
+            <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/jiang-ren-hua-li-jie-da-shu-ding-li-he-zhong-xin-ji-xian-fa-ze.png')">
             </div>
+          
+          <h2 class="post-title">讲人话理解“大数定理”和“中心极限法则”</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-05-13</span>
             
-              <img class="post-feature-image" src="https://WalkingPineapple.github.io/post-images/jiang-ren-hua-li-jie-da-shu-ding-li-he-zhong-xin-ji-xian-fa-ze.png" alt="">
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://WalkingPineapple.github.io/tag/4ISn92sQg/">
+                    实用
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h2 id="autor-pineapple">autor Pineapple</h2>
+          </div>
+          <div class="post-content">
+            <h2 id="autor-pineapple">autor Pineapple</h2>
 <h1 id="大数定律">大数定律</h1>
 <pre><code>大数定律 LLN（Law of large numbers）, 样本数量越多，则其平均就越趋近于期望值。
 </code></pre>
@@ -201,111 +206,62 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>[1]维基百科<br>
 [2]统计之美——人工智能时代的科学思维</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#autor-pineapple">autor Pineapple</a></li>
-</ul>
-</li>
-<li><a href="#%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B">大数定律</a>
-<ul>
-<li><a href="#%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%AE%9A%E7%90%86%E5%BC%B1%E5%A4%A7%E6%95%B0%E5%AE%9A%E7%90%86">伯努利定理（弱大数定理）</a>
-<ul>
-<li><a href="#%E4%BC%AF%E5%8A%AA%E5%88%A9%E8%AF%95%E9%AA%8C">伯努利试验</a></li>
-<li><a href="#%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%AE%9A%E7%90%86">伯努利定理</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BE%9B%E9%92%A6%E5%A4%A7%E6%95%B0%E5%AE%9A%E7%90%86">辛钦大数定理</a>
-<ul>
-<li><a href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">随机变量</a></li>
-<li><a href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B">数学期望</a></li>
-<li><a href="#%E8%BE%9B%E9%92%A6%E5%AE%9A%E7%90%86">辛钦定理</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">中心极限定理</a>
-<ul>
-<li><a href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83">正态分布</a></li>
-<li><a href="#%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86-2">中心极限定理</a></li>
-<li><a href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%AE%9A%E7%90%86">拉普拉斯定理</a></li>
-</ul>
-</li>
-<li><a href="#%E5%A4%A7%E6%95%B0%E5%AE%9A%E7%90%86%E5%92%8C%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB">大数定理和中心极限定理的区别</a><br>
-*
-<ul>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
-</ul>
-</li>
-</ul>
-
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/">
+            <a class="purple-link" href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/">
               <h3 class="post-title">
-                图像傅里叶变换
+                下一篇：图像傅里叶变换
               </h3>
             </a>
           </div>
-        
+          
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  生活|技术|娱乐|抱怨 | 
-  <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
+      <div class="site-footer">
+  <div class="slogan">黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
+</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/WalkingPineapple" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  生活|技术|娱乐|抱怨 | <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
 
-  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+    </div>
+    <script type="application/javascript">
 
-  // This should probably be throttled.
-  // Especially because it triggers during smooth scrolling.
-  // https://lodash.com/docs/4.17.10#throttle
-  // You could do like...
-  // window.addEventListener("scroll", () => {
-  //    _.throttle(doThatStuff, 100);
-  // });
-  // Only not doing it here to keep this Pen dependency-free.
+hljs.initHighlightingOnLoad()
 
-  window.addEventListener("scroll", event => {
-    let fromTop = window.scrollY;
-
-    mainNavLinks.forEach((link, index) => {
-      let section = document.getElementById(decodeURI(link.hash).substring(1));
-      let nextSection = null
-      if (mainNavLinks[index + 1]) {
-        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-      }
-      if (section.offsetTop <= fromTop) {
-        if (nextSection) {
-          if (nextSection.offsetTop > fromTop) {
-            link.classList.add("current");
-          } else {
-            link.classList.remove("current");    
-          }
-        } else {
-          link.classList.add("current");
-        }
-      } else {
-        link.classList.remove("current");
-      }
-    });
-  });
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
 
-      </div>
-    </div>
+
+
+
   </body>
 </html>
