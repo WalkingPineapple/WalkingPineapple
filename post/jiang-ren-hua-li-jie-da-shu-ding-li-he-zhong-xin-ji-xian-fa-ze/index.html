@@ -1,19 +1,16 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>讲人话理解“大数定理”和“中心极限法则” | 摇摇晃摇</title>
 <meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明&lt;/br&gt;                                             
 ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1589473070466">
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1589473153744">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
 
@@ -22,85 +19,89 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://WalkingPineapple.github.io">
-        <img class="avatar" src="https://WalkingPineapple.github.io/images/avatar.png?v=1589473070466" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://WalkingPineapple.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://WalkingPineapple.github.io">
+        <img src="https://WalkingPineapple.github.io/images/avatar.png?v=1589473153744" class="site-logo">
         <h1 class="site-title">摇摇晃摇</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
+
+    </div>
+    <div class="site-footer">
+      生活|技术|娱乐|抱怨 | <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/jiang-ren-hua-li-jie-da-shu-ding-li-he-zhong-xin-ji-xian-fa-ze.png')">
-            </div>
-          
-          <h2 class="post-title">讲人话理解“大数定理”和“中心极限法则”</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-05-13</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">讲人话理解“大数定理”和“中心极限法则”</h2>
+            <div class="post-date">2020-05-13</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://WalkingPineapple.github.io/tag/4ISn92sQg/">
-                    实用
-                    
-                  </a>
-                
-              </span>
+              <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/jiang-ren-hua-li-jie-da-shu-ding-li-he-zhong-xin-ji-xian-fa-ze.png')">
+              </div>
             
-          </div>
-          <div class="post-content">
-            <h2 id="autor-pineapple">autor Pineapple</h2>
+            <div class="post-content">
+              <h2 id="autor-pineapple">autor Pineapple</h2>
 <h1 id="大数定律">大数定律</h1>
 <pre><code>大数定律 LLN（Law of large numbers）, 样本数量越多，则其平均就越趋近于期望值。
 </code></pre>
@@ -206,48 +207,40 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>[1]维基百科<br>
 [2]统计之美——人工智能时代的科学思维</p>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://WalkingPineapple.github.io/tag/4ISn92sQg/" class="tag">
+                    实用
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/">
+                  <h3 class="post-title">
+                    图像傅里叶变换
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/">
-              <h3 class="post-title">
-                下一篇：图像傅里叶变换
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-
-      <div class="site-footer">
-  <div class="slogan">黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
-</div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/WalkingPineapple" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  生活|技术|娱乐|抱怨 | <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 
