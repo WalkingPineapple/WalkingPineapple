@@ -1,269 +1,257 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" >
-
-<title>Python | 摇摇晃摇</title>
-<meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明&lt;/br&gt;                                             
-">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico?v=1589473153744">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>摇摇晃摇</title>
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/tailwind.css">
 <link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="摇摇晃摇 - Atom Feed" href="https://WalkingPineapple.github.io/atom.xml">
 
+    
 
+  <meta name="description" content="黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
+" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
-
-  </head>
-  <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://WalkingPineapple.github.io">
-        <img src="https://WalkingPineapple.github.io/images/avatar.png?v=1589473153744" class="site-logo">
-        <h1 class="site-title">摇摇晃摇</h1>
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      黑夜给了我黑色眼睛，我却用它去寻找光明</br>                                             
-
-    </div>
-    <div class="site-footer">
-      生活|技术|娱乐|抱怨 | <a class="rss" href="https://WalkingPineapple.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="https://WalkingPineapple.github.io/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: Python</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/">
-                  <h2 class="post-title">图像傅里叶变换</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-13
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/">
-                  <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/tu-xiang-fu-li-xie-bian-huan.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://WalkingPineapple.github.io/post/tu-xiang-zhi-fang-tu/">
-                  <h2 class="post-title">图像直方图</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-12
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://WalkingPineapple.github.io/post/tu-xiang-zhi-fang-tu/">
-                  <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/tu-xiang-zhi-fang-tu.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-er/">
-                  <h2 class="post-title">图像轮廓（二）</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-12
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-er/">
-                  <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/tu-xiang-lun-kuo-er.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-yi/">
-                  <h2 class="post-title">图像轮廓（一）</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-11
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-yi/">
-                  <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/tu-xiang-lun-kuo-yi.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://WalkingPineapple.github.io/post/tu-xiang-jin-zi-ta/">
-                  <h2 class="post-title">图像金字塔</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-10
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://WalkingPineapple.github.io/post/tu-xiang-jin-zi-ta/">
-                  <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/tu-xiang-jin-zi-ta.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://WalkingPineapple.github.io/post/canny-bian-yuan-jian-ce/">
-                  <h2 class="post-title">Canny边缘检测</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-09
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://WalkingPineapple.github.io/post/canny-bian-yuan-jian-ce/">
-                  <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/canny-bian-yuan-jian-ce.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://WalkingPineapple.github.io/post/tu-xiang-chu-li-er/">
-                  <h2 class="post-title">图像处理（二）</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-08
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://WalkingPineapple.github.io/post/tu-xiang-chu-li-er/">
-                  <div class="feature-container" style="background-image: url('https://WalkingPineapple.github.io/post-images/tu-xiang-chu-li-er.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-
-          <div class="pagination-container">
-  
-  
-</div>
-
-        </div>
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+        <i class="ri-hashtag"></i>
+        Python
+      </h1>
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          图像傅里叶变换
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-13</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        傅里叶变换数学推导以后有时间补博客后
+傅里叶变换
+图像处理除了对空间域处理，还可以在频率域进行处理。而将图像的空间域变换到频率域的较为广泛方法就是傅里叶变换。
+傅里叶变换数学推导以后有时间补博客后，而我们只需要知道：”任何周期函数都可以表示...
       </div>
+      <a href="https://WalkingPineapple.github.io/post/tu-xiang-fu-li-xie-bian-huan/" class="btn">
+        阅读更多
+      </a>
     </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://WalkingPineapple.github.io/post-images/tu-xiang-fu-li-xie-bian-huan.png" alt="图像傅里叶变换">
+    
+  </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://WalkingPineapple.github.io/post/tu-xiang-zhi-fang-tu/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          图像直方图
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        图像直方图
+图像直方图
+通过直方图，可以统计出图像中各个像素的灰度级出现的次数。通常情况下，我们的图像有256个灰度级[0,255]。
+hist=cv2.calcHist(images,channels,mask,histSize,rang...
+      </div>
+      <a href="https://WalkingPineapple.github.io/post/tu-xiang-zhi-fang-tu/" class="btn">
+        阅读更多
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://WalkingPineapple.github.io/post-images/tu-xiang-zhi-fang-tu.png" alt="图像直方图">
+    
+  </div>
 
-<script type="application/javascript">
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-er/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          图像轮廓（二）
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        图像轮廓
+图像拟合
+用一个多边形去拟合我们需要的轮廓。
+边界矩形
+retval=cv2.boundingRect(array)
 
-AOS.init();
 
-hljs.initHighlightingOnLoad()
+retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和高度，分别是:
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+矩形左上角的X坐标
+矩形左上...
+      </div>
+      <a href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-er/" class="btn">
+        阅读更多
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://WalkingPineapple.github.io/post-images/tu-xiang-lun-kuo-er.png" alt="图像轮廓（二）">
+    
+  </div>
 
-</script>
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-yi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          图像轮廓（一）
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-11</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        图像轮廓
+边缘与轮廓简单区别：边缘有无连续，轮廓一定连续。
+查找轮廓
+在OpenCV中，函数cv2.findContours()可以帮助我们查找出图像的轮廓
+img，contours，hierarchy=cv2=.findContours(...
+      </div>
+      <a href="https://WalkingPineapple.github.io/post/tu-xiang-lun-kuo-yi/" class="btn">
+        阅读更多
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://WalkingPineapple.github.io/post-images/tu-xiang-lun-kuo-yi.png" alt="图像轮廓（一）">
+    
+  </div>
 
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://WalkingPineapple.github.io/post/tu-xiang-jin-zi-ta/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          图像金字塔
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        图像金字塔
+高分辨率图像产生的低分辨率图像集合。
 
+高斯金字塔
+将原图像不断使用高斯滤波器进行滤波，将滤波图像删除偶数行和偶数列删除（向下采样），通过向下采样，原图像像素值丢失，分辨率减小。
+dst=cv2.pyrdown(src,dsts...
+      </div>
+      <a href="https://WalkingPineapple.github.io/post/tu-xiang-jin-zi-ta/" class="btn">
+        阅读更多
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://WalkingPineapple.github.io/post-images/tu-xiang-jin-zi-ta.png" alt="图像金字塔">
+    
+  </div>
 
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://WalkingPineapple.github.io/post/canny-bian-yuan-jian-ce/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Canny边缘检测
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-09</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        Canny边缘检测
+1.通过高斯滤波器（算子）来去除图像噪声（噪声会影响检测的准确性）
+2.计算梯度的幅度和方向
+3.使用“非极大值抑制” 消除边缘检测来的杂散响应
+4.使用双阈值算法来确定边缘
 
-  </body>
+1.高斯滤波去噪
+使用高斯滤波的目的就是平...
+      </div>
+      <a href="https://WalkingPineapple.github.io/post/canny-bian-yuan-jian-ce/" class="btn">
+        阅读更多
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://WalkingPineapple.github.io/post-images/canny-bian-yuan-jian-ce.png" alt="Canny边缘检测">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://WalkingPineapple.github.io/post/tu-xiang-chu-li-er/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          图像处理（二）
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-08</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        图像处理 （二）
+开运算
+先腐蚀，后膨胀（去噪 、计数）
+opening=cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
+- opening:返回值，开运算返回后图像
+- img：原图像
+- kern...
+      </div>
+      <a href="https://WalkingPineapple.github.io/post/tu-xiang-chu-li-er/" class="btn">
+        阅读更多
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://WalkingPineapple.github.io/post-images/tu-xiang-chu-li-er.png" alt="图像处理（二）">
+    
+  </div>
+  
+      </div>
+
+      
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  生活|技术|娱乐|抱怨
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://WalkingPineapple.github.io/media/scripts/main.js"></script>
+</body>
 </html>
