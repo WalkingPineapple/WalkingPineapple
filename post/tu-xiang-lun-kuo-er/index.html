@@ -61,7 +61,11 @@ retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和�
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
  
   
+    <link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/prism-atom-dark.css">
+  
 
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
   
 </head>
 
@@ -274,6 +278,8 @@ img_show('convexity',result)
       
 
       
+        <div id="vlaine-comment"></div>
+      
 
       <footer class="py-12 text-center px-4 md:px-0" v-pre>
   生活|技术|娱乐|抱怨
@@ -380,6 +386,11 @@ img_show('convexity',result)
   
   <!-- Code Highlight -->
   
+    <script src="https://WalkingPineapple.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
 
   <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
@@ -465,6 +476,23 @@ img_show('convexity',result)
     //初始化
     initImg();
   </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: '',
+    appKey: '',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
   
   
 </body>
