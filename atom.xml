@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-09-07T12:36:47.972Z</updated>
+    <updated>2020-09-07T13:21:59.747Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -12,12 +12,37 @@
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
     <entry>
-        <title type="html"><![CDATA[test post]]></title>
-        <id>https://WalkingPineapple.github.io/post/test-post/</id>
-        <link href="https://WalkingPineapple.github.io/post/test-post/">
+        <title type="html"><![CDATA[# 结——职记]]></title>
+        <id>https://WalkingPineapple.github.io/post/jie-zhi-ji/</id>
+        <link href="https://WalkingPineapple.github.io/post/jie-zhi-ji/">
         </link>
-        <updated>2020-09-07T12:31:43.000Z</updated>
-        <content type="html"><![CDATA[<p>test posttest posttest post</p>
+        <updated>2020-09-07T13:17:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>随着汽车慢慢停下，为期一月之久的黄龙培训随之结束。<br>
+学习铁路、学习安全似乎已经让我疲惫不堪，在交卷和登车的时间，已经成为了一种奢靡的relax time.</p>
+<p>总的来说，接下来总得去完成那么些事：</p>
+<p>-10.19日，理论培训结束，期间穿插了各种专业知识的培训和学习。离不开的也是考试。-10.31日，司法考试的日子，法作为我的兴趣之一，很想证明自己一次。</p>
+<p>看似简单的日程， 却如清明上河图一般，极为复杂 又极为精妙。</p>
+<p>好吧，老伙计，第一次把树洞挂在了博客上，还是得说点什么。</p>
+<pre><code>学习专业知识、网安知识技能。
+博客输出——学会总结和产出。
+众学之道
+</code></pre>
+<p>博观而约取，厚积而勃发。</p>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1599484827479.jpg" alt="" loading="lazy"></figure>
+]]></summary>
+        <content type="html"><![CDATA[<p>随着汽车慢慢停下，为期一月之久的黄龙培训随之结束。<br>
+学习铁路、学习安全似乎已经让我疲惫不堪，在交卷和登车的时间，已经成为了一种奢靡的relax time.</p>
+<p>总的来说，接下来总得去完成那么些事：</p>
+<p>-10.19日，理论培训结束，期间穿插了各种专业知识的培训和学习。离不开的也是考试。-10.31日，司法考试的日子，法作为我的兴趣之一，很想证明自己一次。</p>
+<p>看似简单的日程， 却如清明上河图一般，极为复杂 又极为精妙。</p>
+<p>好吧，老伙计，第一次把树洞挂在了博客上，还是得说点什么。</p>
+<pre><code>学习专业知识、网安知识技能。
+博客输出——学会总结和产出。
+众学之道
+</code></pre>
+<p>博观而约取，厚积而勃发。</p>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1599484827479.jpg" alt="" loading="lazy"></figure>
+<!-- more -->
 ]]></content>
     </entry>
     <entry>
