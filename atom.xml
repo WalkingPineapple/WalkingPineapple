@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-09-08T15:31:42.646Z</updated>
+    <updated>2020-09-09T16:31:04.925Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,78 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[ 重拾计算机的网络 OSI ]]></title>
+        <id>https://WalkingPineapple.github.io/post/chong-shi-ji-suan-ji-de-wang-luo-osi/</id>
+        <link href="https://WalkingPineapple.github.io/post/chong-shi-ji-suan-ji-de-wang-luo-osi/">
+        </link>
+        <updated>2020-09-09T16:29:22.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>由于近期在培训，发现以前学过的很多计算机网络知识丢了还多，特地想借博客一起补补，只是回顾，很多东西较为省略</strong></p>
+<h2 id="osi-参考模型">OSI 参考模型</h2>
+<h3 id="应用层">应用层</h3>
+<pre><code>应用层可以理解为应用程序的接口，它可以确定目标通信方的可用性，还可以判断是否有足够的资源进行想要的通信。
+APDU 应用数据单元
+对应网络协议：
+HTTP（超文本传输协议）：80
+FTP（文件传输协议）：主动模式下，数据20，控制21
+TFTP（简单文件传输协议）：69
+SMTP(简单邮件传输协议）：25
+SNMP(简单网络管理协议）：161
+DNS（域名解析协议）：53
+TELENT（远程终端协议）：23
+HTTPS(超文本安全协议）：443
+POP3（邮件传输协议）：110
+DHCP（动态主机配置协议）：67
+</code></pre>
+<h3 id="表示层">表示层</h3>
+<pre><code>表示层既可以向应用层提供数据，也负责数据的转换和代码格式化、数据加密等。
+PPDU 表示数据单元
+</code></pre>
+<h3 id="会话层">会话层</h3>
+<pre><code>会话层负责在表示层实体之间建立、管理和终止对话，还对设备或节点之间的对话进行控制。比如：单工、半双工、全双工。
+单双工：A-B,A只能负责说，B只能负责听。
+半双工：A-B,A说话的时候，B不能说话，B说话，A不能说话。
+全双工：A-B,A B同时说话
+SPDU 会话数据单元
+</code></pre>
+<h3 id="传输层">传输层</h3>
+<pre><code>传输层利用实现可靠的端到端的数据传输实现数据的分段、传输和组装。具有差错控制、流量/拥塞控制等功能。
+PDU：段
+对应网络协议：
+TCP（传输控制协议）：
+UDP（用户数据报协议）
+
+</code></pre>
+<h3 id="网络层">网络层</h3>
+<pre><code>网络层提供路由选择，选择到达主机的最佳路径，需要在不同的网络设备中传输数据流（路由器）
+PDU：分组
+对应网络协议：
+ICMP(网际组管理协议)
+IP（网际互连协议）
+ICMP（控制报文协议）
+ARP（地址解析协议）
+RARP（反向地址转换协议）
+</code></pre>
+<h3 id="数据链路层">数据链路层</h3>
+<pre><code>数据链路层提供数据的物理传输，并处理错误通知、网络拓扑和流量控制。其包含两个子层：LLC MAC 
+PDU 帧   
+网桥、交换机
+</code></pre>
+<h3 id="物理层">物理层</h3>
+<pre><code>物理层提供了透明的比特流传输。
+DTE（数据终端设备）DCE(数据通信设备)区别：DCE提供时钟，DTE不提供时钟。
+PDU 比特
+</code></pre>
+<h2 id="数据封装">数据封装</h2>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1599669004100.png" alt="" loading="lazy"></figure>
+<p>结合上图，数据封装的流程如下：<br>
+1.用户信息被转换为数据，便于网络间通信传输。<br>
+2.数据会加上TCP头转换为数据段，发送主机和接收主机之间建立一条可靠的连接。<br>
+3.TCP数据段加上IP头转换为数据包。<br>
+4.对数据包加上MAC头转换为数据帧，还需要加入一个FCS校验组。<br>
+5.数据帧转换为比特流传输。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[DDOS 初探]]></title>
         <id>https://WalkingPineapple.github.io/post/ddos-chu-tan/</id>
@@ -677,69 +749,6 @@ result=img-up_1
 img_show('result',result)
 print(result.shape)
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Canny边缘检测]]></title>
-        <id>https://WalkingPineapple.github.io/post/canny-bian-yuan-jian-ce/</id>
-        <link href="https://WalkingPineapple.github.io/post/canny-bian-yuan-jian-ce/">
-        </link>
-        <updated>2020-02-09T08:40:01.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="canny边缘检测">Canny边缘检测</h2>
-<pre><code>1.通过高斯滤波器（算子）来去除图像噪声（噪声会影响检测的准确性）
-2.计算梯度的幅度和方向
-3.使用“非极大值抑制” 消除边缘检测来的杂散响应
-4.使用双阈值算法来确定边缘
-</code></pre>
-<h3 id="1高斯滤波去噪">1.高斯滤波去噪</h3>
-<pre><code>使用高斯滤波的目的就是平滑一些较弱的非边缘区域,滤波器的核越大，边缘信息对于噪声的敏感度就越低， 检测错误也会随之增加
-</code></pre>
-<h3 id="2梯度计算">2.梯度计算</h3>
-<pre><code>原始图像的边缘的方向是不同的，使用梯度算子来分别计算水平、垂直、对角线的方向梯度，因为梯度方向与边缘是垂直的，在梯度计算中，我么你可以计算出水平方向的Gx和垂直方向Gy，所以：
-</code></pre>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mi mathvariant="normal">G</mi><mo>=</mo><msqrt><mrow><msubsup><mi>G</mi><mi>x</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>G</mi><mi>y</mi><mn>2</mn></msubsup></mrow></msqrt></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mi>θ</mi><mo>=</mo><mi mathvariant="normal">atan</mi><mo>⁡</mo><mn>2</mn><mrow><mo fence="true">(</mo><msub><mi>G</mi><mi>y</mi></msub><mo separator="true">,</mo><msub><mi>G</mi><mi>x</mi></msub><mo fence="true">)</mo></mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
-&amp;\mathrm{G}=\sqrt{G_{x}^{2}+G_{y}^{2}}\\
-&amp;\theta=\operatorname{atan} 2\left(G_{y}, G_{x}\right)
-\end{aligned}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6400000000000006em;vertical-align:-1.5700000000000003em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.0700000000000003em;"><span style="top:-4.07em;"><span class="pstrut" style="height:3.212375em;"></span><span class="mord"></span></span><span style="top:-2.302375em;"><span class="pstrut" style="height:3.212375em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5700000000000003em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.0700000000000003em;"><span style="top:-4.07em;"><span class="pstrut" style="height:3.212375em;"></span><span class="mord"><span class="mord"></span><span class="mord"><span class="mord mathrm">G</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2123750000000002em;"><span class="svg-align" style="top:-3.8em;"><span class="pstrut" style="height:3.8em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7401079999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.1723749999999997em;"><span class="pstrut" style="height:3.8em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.8800000000000001em;"><svg width='400em' height='1.8800000000000001em' viewBox='0 0 400000 1944' preserveAspectRatio='xMinYMin slice'><path d='M1001,80H400000v40H1013.1s-83.4,268,-264.1,840c-180.7,
-572,-277,876.3,-289,913c-4.7,4.7,-12.7,7,-24,7s-12,0,-12,0c-1.3,-3.3,-3.7,-11.7,
--7,-25c-35.3,-125.3,-106.7,-373.3,-214,-744c-10,12,-21,25,-33,39s-32,39,-32,39
-c-6,-5.3,-15,-14,-27,-26s25,-30,25,-30c26.7,-32.7,52,-63,76,-91s52,-60,52,-60
-s208,722,208,722c56,-175.3,126.3,-397.3,211,-666c84.7,-268.7,153.8,-488.2,207.5,
--658.5c53.7,-170.3,84.5,-266.8,92.5,-289.5c4,-6.7,10,-10,18,-10z
-M1001 80H400000v40H1013z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6276249999999999em;"><span></span></span></span></span></span></span></span><span style="top:-2.302375em;"><span class="pstrut" style="height:3.212375em;"></span><span class="mord"><span class="mord"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop"><span class="mord mathrm">a</span><span class="mord mathrm">t</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5700000000000003em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
-<h3 id="3非极大值抑制">3.非极大值抑制</h3>
-<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581237806396.png" alt="" loading="lazy"></figure>
-<pre><code>从图中可以得到，A、B 、C 三个点都具有相同水平方向（梯度方向垂直于边缘），我们只需要判断三个点是或否为各自局部的最大值，如果是，保留，反之，则抑制（置0），通过非极大值抑制，就可以使边缘更加细化。
-</code></pre>
-<h3 id="4双阈值确定边缘">4.双阈值确定边缘</h3>
-<p>通过设定两个阈值：高阈值（maxVal）低阈值（minVal），用梯度幅度和这个两个比较，就可以判断边缘属性。</p>
-<p><img src="https://WalkingPineapple.github.io/post-images/1581237824221.png" alt="" loading="lazy"><br>
-结合图像，A点的梯度值大于maxVal,则归为边界，B点，介于maxVal和minVal中间，并且与边界相连，所以保留，C点同时介于中间，但不相连，则抛弃，D点小于minVal，则抛弃。<br>
-通过阈值处理后，可以将梯度较小的点排除，让边缘更加细化。</p>
-<h3 id="canny函数">Canny函数</h3>
-<pre><code>edges=cv2.Canny(img,threshold1,threshold2,apertureSize,L2gradient)
-- edges:返回值，边缘图像
-- image:输入的8位图像
-- threshold1：第一个阈值
-- threshold2：第二个阈值
-- apertureSize：算子的维度
-- L2gradient：计算图像梯度幅度标识，默认值为False，如果为True，则使用L2	范数进行计算（更精确）
-</code></pre>
-<p><strong>实际代码演示</strong><br>
-原始图像：</p>
-<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581237833705.jpg" alt="" loading="lazy"></figure>
-<pre><code class="language-python">img=cv2.imread(&quot;timg.jpg&quot;,cv2.IMREAD_GRAYSCALE)
-img_show(&quot;img&quot;,img)
-
-canny1=cv2.Canny(img,200,400)
-canny2=cv2.Canny(img,50,100)
-
-res = np.hstack((canny1,canny2))
-img_show('res',res)
-</code></pre>
-<figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581237841858.png" alt="" loading="lazy"></figure>
-<p>如果将两个阈值设偏小时，边缘检测会更细腻，捕获的的信息越多。</p>
 ]]></content>
     </entry>
 </feed>
