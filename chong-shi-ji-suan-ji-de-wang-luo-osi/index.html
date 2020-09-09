@@ -1,0 +1,375 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title> 重拾计算机的网络 OSI  - 摇摇晃摇</title>
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title=" 重拾计算机的网络 OSI  - 摇摇晃摇 - Atom Feed" href="https://WalkingPineapple.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="由于近期在培训，发现以前学过的很多计算机网络知识丢了还多，特地想借博客一起补补，只是回顾，很多东西较为省略
+OSI 参考模型
+应用层
+应用层可以理解为应用程序的接口，它可以确定目标通信方的可用性，还可以判断是否有足够的资源进行想要的通信。
+..." />
+  <meta property="og:title" content=" 重拾计算机的网络 OSI  - 摇摇晃摇">
+  <meta property="og:description" content="由于近期在培训，发现以前学过的很多计算机网络知识丢了还多，特地想借博客一起补补，只是回顾，很多东西较为省略
+OSI 参考模型
+应用层
+应用层可以理解为应用程序的接口，它可以确定目标通信方的可用性，还可以判断是否有足够的资源进行想要的通信。
+..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://WalkingPineapple.github.io/chong-shi-ji-suan-ji-de-wang-luo-osi/" />
+  <meta property="og:image" content="https://WalkingPineapple.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content=" 重拾计算机的网络 OSI  - 摇摇晃摇">
+  <meta name="twitter:description" content="由于近期在培训，发现以前学过的很多计算机网络知识丢了还多，特地想借博客一起补补，只是回顾，很多东西较为省略
+OSI 参考模型
+应用层
+应用层可以理解为应用程序的接口，它可以确定目标通信方的可用性，还可以判断是否有足够的资源进行想要的通信。
+...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://WalkingPineapple.github.io/chong-shi-ji-suan-ji-de-wang-luo-osi/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://WalkingPineapple.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      摇摇晃摇
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+           重拾计算机的网络 OSI 
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-09-10 · 3 min read</div>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p><strong>由于近期在培训，发现以前学过的很多计算机网络知识丢了还多，特地想借博客一起补补，只是回顾，很多东西较为省略</strong></p>
+<h2 id="osi-参考模型">OSI 参考模型</h2>
+<h3 id="应用层">应用层</h3>
+<pre><code>应用层可以理解为应用程序的接口，它可以确定目标通信方的可用性，还可以判断是否有足够的资源进行想要的通信。
+APDU 应用数据单元
+对应网络协议：
+HTTP（超文本传输协议）：80
+FTP（文件传输协议）：主动模式下，数据20，控制21
+TFTP（简单文件传输协议）：69
+SMTP(简单邮件传输协议）：25
+SNMP(简单网络管理协议）：161
+DNS（域名解析协议）：53
+TELENT（远程终端协议）：23
+HTTPS(超文本安全协议）：443
+POP3（邮件传输协议）：110
+DHCP（动态主机配置协议）：67
+</code></pre>
+<h3 id="表示层">表示层</h3>
+<pre><code>表示层既可以向应用层提供数据，也负责数据的转换和代码格式化、数据加密等。
+PPDU 表示数据单元
+</code></pre>
+<h3 id="会话层">会话层</h3>
+<pre><code>会话层负责在表示层实体之间建立、管理和终止对话，还对设备或节点之间的对话进行控制。比如：单工、半双工、全双工。
+单双工：A-B,A只能负责说，B只能负责听。
+半双工：A-B,A说话的时候，B不能说话，B说话，A不能说话。
+全双工：A-B,A B同时说话
+SPDU 会话数据单元
+</code></pre>
+<h3 id="传输层">传输层</h3>
+<pre><code>传输层利用实现可靠的端到端的数据传输实现数据的分段、传输和组装。具有差错控制、流量/拥塞控制等功能。
+PDU：段
+对应网络协议：
+TCP（传输控制协议）：
+UDP（用户数据报协议）
+
+</code></pre>
+<h3 id="网络层">网络层</h3>
+<pre><code>网络层提供路由选择，选择到达主机的最佳路径，需要在不同的网络设备中传输数据流（路由器）
+PDU：分组
+对应网络协议：
+ICMP(网际组管理协议)
+IP（网际互连协议）
+ICMP（控制报文协议）
+ARP（地址解析协议）
+RARP（反向地址转换协议）
+</code></pre>
+<h3 id="数据链路层">数据链路层</h3>
+<pre><code>数据链路层提供数据的物理传输，并处理错误通知、网络拓扑和流量控制。其包含两个子层：LLC MAC 
+PDU 帧   
+网桥、交换机
+</code></pre>
+<h3 id="物理层">物理层</h3>
+<pre><code>物理层提供了透明的比特流传输。
+DTE（数据终端设备）DCE(数据通信设备)区别：DCE提供时钟，DTE不提供时钟。
+PDU 比特
+</code></pre>
+<h2 id="数据封装">数据封装</h2>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1599669004100.png" alt="" loading="lazy"></figure>
+<p>结合上图，数据封装的流程如下：<br>
+1.用户信息被转换为数据，便于网络间通信传输。<br>
+2.数据会加上TCP头转换为数据段，发送主机和接收主机之间建立一条可靠的连接。<br>
+3.TCP数据段加上IP头转换为数据包。<br>
+4.对数据包加上MAC头转换为数据帧，还需要加入一个FCS校验组。<br>
+5.数据帧转换为比特流传输。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  我们看到的只是冰山一角。
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#osi-%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B">OSI 参考模型</a>
+<ul>
+<li><a href="#%E5%BA%94%E7%94%A8%E5%B1%82">应用层</a></li>
+<li><a href="#%E8%A1%A8%E7%A4%BA%E5%B1%82">表示层</a></li>
+<li><a href="#%E4%BC%9A%E8%AF%9D%E5%B1%82">会话层</a></li>
+<li><a href="#%E4%BC%A0%E8%BE%93%E5%B1%82">传输层</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E5%B1%82">网络层</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82">数据链路层</a></li>
+<li><a href="#%E7%89%A9%E7%90%86%E5%B1%82">物理层</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85">数据封装</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://WalkingPineapple.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://WalkingPineapple.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: '',
+    appKey: '',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨指点一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

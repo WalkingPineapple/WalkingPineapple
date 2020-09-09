@@ -1,0 +1,475 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>图像处理（二） - 摇摇晃摇</title>
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="图像处理（二） - 摇摇晃摇 - Atom Feed" href="https://WalkingPineapple.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="图像处理 （二）
+开运算
+先腐蚀，后膨胀（去噪 、计数）
+opening=cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
+- opening:返回值，开运算返回后图像
+- img：原图像
+- kern..." />
+  <meta property="og:title" content="图像处理（二） - 摇摇晃摇">
+  <meta property="og:description" content="图像处理 （二）
+开运算
+先腐蚀，后膨胀（去噪 、计数）
+opening=cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
+- opening:返回值，开运算返回后图像
+- img：原图像
+- kern..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://WalkingPineapple.github.io/tu-xiang-chu-li-er/" />
+  <meta property="og:image" content="https://WalkingPineapple.github.io/post-images/tu-xiang-chu-li-er.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="图像处理（二） - 摇摇晃摇">
+  <meta name="twitter:description" content="图像处理 （二）
+开运算
+先腐蚀，后膨胀（去噪 、计数）
+opening=cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
+- opening:返回值，开运算返回后图像
+- img：原图像
+- kern...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://WalkingPineapple.github.io/tu-xiang-chu-li-er/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://WalkingPineapple.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      摇摇晃摇
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          图像处理（二）
+        </h1>
+        
+          <img src="https://WalkingPineapple.github.io/post-images/tu-xiang-chu-li-er.png" alt="图像处理（二）" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-08 · 5 min read</div>
+          
+            <a href="https://WalkingPineapple.github.io/M0loczjJq/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              OpenCV
+            </a>
+          
+            <a href="https://WalkingPineapple.github.io/V2V6vX6Gc/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Python
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="图像处理-二">图像处理 （二）</h2>
+<h3 id="开运算">开运算</h3>
+<pre><code>先腐蚀，后膨胀（去噪 、计数）
+opening=cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
+- opening:返回值，开运算返回后图像
+- img：原图像
+- kernel：核函数
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">opening=cv2.morphologyEx(thresh2,cv2.MORPH_OPEN,kernel)
+img_show(&quot;opening&quot;,opening)
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581157587418.png" alt="" loading="lazy"></figure>
+<h3 id="闭运算">闭运算</h3>
+<pre><code>先膨胀，后腐蚀（去除小黑点）
+closing=cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
+- closing:返回值，开运算返回后图像
+- img：原图像
+- kernel：核函数
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">closing=cv2.morphologyEx(thresh2,cv2.MORPH_CLOSE,kernel)
+img_show(&quot;closing&quot;,closing)
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581157595122.png" alt="" loading="lazy"></figure>
+<h3 id="梯度运算">梯度运算</h3>
+<pre><code>用图像的膨胀后图像减去腐蚀操作的图像（获取原始图像的前景图像边缘）
+result=cv2.morphologyEx(img,cv2.MORPH_GRADIENT,kernel)
+- result:返回值，梯度元素后返回后的图像
+- img：原图像
+- kernel：核函数
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">result=cv2.morphologyEx(thresh2,cv2.MORPH_GRADIENT,kernel)
+img_show(&quot;grad&quot;,result)
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581157616087.png" alt="" loading="lazy"></figure>
+<h3 id="礼帽运算">礼帽运算</h3>
+<pre><code>原始图像减开运算图像的操作（获取图像噪声、得到比原始图像边缘更亮的边缘信息）
+result=cv2.morphologyEx(img,cv2.MORPH_TOPHAT,kernel)
+- result:返回值，礼帽元素后返回后的图像
+- img：原图像
+- kernel：核函数
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">#礼帽运算
+result=cv2.morphologyEx(thresh2,cv2.MORPH_TOPHAT,kernel)
+img_show(&quot;TopHat&quot;,result)
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://WalkingPineapple.github.io/post-images/1581157627588.png" alt="" loading="lazy"></figure>
+<h3 id="黑帽运算">黑帽运算</h3>
+<pre><code>闭运算减原始图像操作（获取图像的小黑点、得到比院士图像边缘更暗的边缘信息）
+result=cv2.morphologyEx(img,cv2.MORPH_BLACKHAT,kernel)
+- result:返回值，礼帽元素后返回后的图像
+- img：原图像
+- kernel：核函数
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">#黑帽运算
+result=cv2.morphologyEx(thresh2,cv2.MORPH_BLACKHAT,kernel)
+img_show(&quot;BlackHat&quot;,result)
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://WalkingPineapple.github.io/post-images/1581157699138.png" alt="" loading="lazy"></figure>
+<h3 id="图像梯度">图像梯度</h3>
+<p>图像梯度就是图像的变化速度，对于图像的边缘来说，梯度越大，变化越大（计算图像边缘信息）对于任意边界，如果右侧（上侧）像素值与左侧（下侧）像素值差值为0，则为边界，反之，则不是。</p>
+<h4 id="sobel算子">Sobel算子</h4>
+<pre><code>利用局部差找边界，计算结果为梯度一个近似值
+</code></pre>
+<figure data-type="image" tabindex="6"><img src="https://WalkingPineapple.github.io/post-images/1581157719131.png" alt="" loading="lazy"></figure>
+<pre><code>图像的梯度计算简单来说就是求导，那水平方向Gx的偏导数如下：
+</code></pre>
+<figure data-type="image" tabindex="7"><img src="https://WalkingPineapple.github.io/post-images/1581157735072.png" alt="" loading="lazy"></figure>
+<pre><code>垂直方向Gy的偏导数如下：
+</code></pre>
+<figure data-type="image" tabindex="8"><img src="https://WalkingPineapple.github.io/post-images/1581157746497.png" alt="" loading="lazy"></figure>
+<pre><code>dst = cv2.Sobel(src, ddepth, dx, dy, ksize，scale，delta)
+- ddepth:图像的深度，通常在实际计算中，可能会出现负数，如果处理的事8位图，ddepth设置为-1，则负数就会截断为0，所以，我们在计算时候使用更高的数据类型cv2.CV_64F,并通过convertScaleAbs取绝对值即可。
+- dx和dy分别表示水平和竖直方向求导阶数
+- ksize：Sobel算子的大小 为-1时，则使用Scharr算子进行计算
+- scale：计算导数时的缩放因子，默认为1，则无缩放
+- delta：加在目标图像的值，默认为0
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">#水平方向
+
+sobelx=cv2.Sobel(thresh2,cv2.CV_64F,1,0,ksize=3)
+sobelxAbsx=cv2.convertScaleAbs(sobelx)
+img_show(&quot;sobelx&quot;,sobelxAbsx)
+#垂直方向
+sobely=cv2.Sobel(thresh2,cv2.CV_64F,0,1,ksize=3)
+sobelxAbsy=cv2.convertScaleAbs(sobely)
+img_show(&quot;sobely&quot;,sobelxAbsy)
+# 计算水平方向和垂直方向的边界叠加和
+sobelxy=cv2.addWeighted(sobelxAbsy,0.5,sobelxAbsy,0.5,0)
+img_show(&quot;sobelxy&quot;,sobelxy)
+</code></pre>
+<figure data-type="image" tabindex="9"><img src="https://WalkingPineapple.github.io/post-images/1581157774306.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://WalkingPineapple.github.io/post-images/1581157783328.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://WalkingPineapple.github.io/post-images/1581157793149.png" alt="" loading="lazy"></figure>
+<h4 id="scharr算子">Scharr算子</h4>
+<pre><code>Sobel的改进，提高了精度。
+</code></pre>
+<figure data-type="image" tabindex="12"><img src="https://WalkingPineapple.github.io/post-images/1581157807514.png" alt="" loading="lazy"></figure>
+<pre><code>dst = cv2.Scharr(src, ddepth, dx, dy, ksize，scale，delta)
+- ddepth:图像的深度，通常在实际计算中，可能会出现负数，如果处理的事8位图，ddepth设置为-1，则负数就会截断为0，所以，我们在计算时候使用更高的数据类型cv2.CV_64F,并通过convertScaleAbs取绝对值即可。
+- dx和dy分别表示水平和竖直方向求导阶数
+- scale：计算导数时的缩放因子，默认为1，则无缩放
+- delta：加在目标图像的值，默认为0
+</code></pre>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">#水平方向
+scharrx=cv2.Scharr(thresh2,cv2.CV_64F,1,0)
+scharrAbsx=cv2.convertScaleAbs(sobelx)
+img_show(&quot;scharrx&quot;,scharrAbsx)
+#垂直方向
+scharry=cv2.Scharr(thresh2,cv2.CV_64F,1,0)
+scharrAbsy=cv2.convertScaleAbs(sobely)
+img_show(&quot;scharry&quot;,scharrAbsy)
+
+## 计算水平方向和垂直方向的边界叠加和
+scharrxy=cv2.addWeighted(scharrAbsx,0.5,scharrAbsy,0.5,0)
+img_show(&quot;scharrxy&quot;,scharrxy)
+</code></pre>
+<figure data-type="image" tabindex="13"><img src="https://WalkingPineapple.github.io/post-images/1581157830308.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="14"><img src="https://WalkingPineapple.github.io/post-images/1581157836312.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="15"><img src="https://WalkingPineapple.github.io/post-images/1581157840927.png" alt="" loading="lazy"></figure>
+<h4 id="laplacian算子">Laplacian算子</h4>
+<pre><code>简单来说，就是求二阶导数，虽案子的系数之和需要为0(满足不同图像的边缘锐化)
+</code></pre>
+<p><img src="https://WalkingPineapple.github.io/post-images/1581157862262.png" alt="" loading="lazy"><br>
+dst = cv2.Laplacian(src, ddepth,  ksize，scale，delta)<br>
+- ddepth:图像的深度<br>
+- ksize：Sobel算子的大小 为-1时，则使用Scharr算子进行计算<br>
+- scale：计算导数时的缩放因子，默认为1，则无缩放<br>
+- delta：加在目标图像的值，默认为0<br>
+<strong>实际代码演示</strong></p>
+<pre><code class="language-python">#Laplacian算子
+laplacian=cv2.Laplacian(thresh2,cv2.CV_64F)
+laplacianAbs=cv2.convertScaleAbs(laplacian)
+img_show(&quot;laplacian&quot;,laplacianAbs)
+</code></pre>
+<figure data-type="image" tabindex="16"><img src="https://WalkingPineapple.github.io/post-images/1581157870764.png" alt="" loading="lazy"></figure>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  我们看到的只是冰山一角。
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E4%BA%8C">图像处理 （二）</a>
+<ul>
+<li><a href="#%E5%BC%80%E8%BF%90%E7%AE%97">开运算</a></li>
+<li><a href="#%E9%97%AD%E8%BF%90%E7%AE%97">闭运算</a></li>
+<li><a href="#%E6%A2%AF%E5%BA%A6%E8%BF%90%E7%AE%97">梯度运算</a></li>
+<li><a href="#%E7%A4%BC%E5%B8%BD%E8%BF%90%E7%AE%97">礼帽运算</a></li>
+<li><a href="#%E9%BB%91%E5%B8%BD%E8%BF%90%E7%AE%97">黑帽运算</a></li>
+<li><a href="#%E5%9B%BE%E5%83%8F%E6%A2%AF%E5%BA%A6">图像梯度</a>
+<ul>
+<li><a href="#sobel%E7%AE%97%E5%AD%90">Sobel算子</a></li>
+<li><a href="#scharr%E7%AE%97%E5%AD%90">Scharr算子</a></li>
+<li><a href="#laplacian%E7%AE%97%E5%AD%90">Laplacian算子</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://WalkingPineapple.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://WalkingPineapple.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: '',
+    appKey: '',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨指点一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

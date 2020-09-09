@@ -1,0 +1,500 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>图像轮廓（二） - 摇摇晃摇</title>
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="图像轮廓（二） - 摇摇晃摇 - Atom Feed" href="https://WalkingPineapple.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="图像轮廓
+图像拟合
+用一个多边形去拟合我们需要的轮廓。
+边界矩形
+retval=cv2.boundingRect(array)
+
+
+retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和高度，分别是:
+
+矩形左上角的X坐标
+矩形左上..." />
+  <meta property="og:title" content="图像轮廓（二） - 摇摇晃摇">
+  <meta property="og:description" content="图像轮廓
+图像拟合
+用一个多边形去拟合我们需要的轮廓。
+边界矩形
+retval=cv2.boundingRect(array)
+
+
+retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和高度，分别是:
+
+矩形左上角的X坐标
+矩形左上..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://WalkingPineapple.github.io/tu-xiang-lun-kuo-er/" />
+  <meta property="og:image" content="https://WalkingPineapple.github.io/post-images/tu-xiang-lun-kuo-er.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="图像轮廓（二） - 摇摇晃摇">
+  <meta name="twitter:description" content="图像轮廓
+图像拟合
+用一个多边形去拟合我们需要的轮廓。
+边界矩形
+retval=cv2.boundingRect(array)
+
+
+retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和高度，分别是:
+
+矩形左上角的X坐标
+矩形左上...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://WalkingPineapple.github.io/tu-xiang-lun-kuo-er/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://WalkingPineapple.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      摇摇晃摇
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          图像轮廓（二）
+        </h1>
+        
+          <img src="https://WalkingPineapple.github.io/post-images/tu-xiang-lun-kuo-er.png" alt="图像轮廓（二）" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-12 · 5 min read</div>
+          
+            <a href="https://WalkingPineapple.github.io/M0loczjJq/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              OpenCV
+            </a>
+          
+            <a href="https://WalkingPineapple.github.io/V2V6vX6Gc/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Python
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="图像轮廓">图像轮廓</h2>
+<h3 id="图像拟合">图像拟合</h3>
+<p>用一个多边形去拟合我们需要的轮廓。</p>
+<h4 id="边界矩形">边界矩形</h4>
+<p>retval=cv2.boundingRect(array)</p>
+<ul>
+<li>
+<p>retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和高度，分别是:</p>
+<ul>
+<li>矩形左上角的X坐标</li>
+<li>矩形左上角的y坐标</li>
+<li>矩形边界的x方向的长度</li>
+<li>矩形边界的y方向的长度</li>
+</ul>
+</li>
+<li>
+<p>array：灰度图像或者轮廓</p>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581492330618.png" alt="" loading="lazy"></figure>
+</li>
+</ul>
+<h4 id="边界圆形">边界圆形</h4>
+<p>center，radius=cv2.minEnclosingCircle(points)</p>
+<ul>
+<li>center:包围圆形的圆心</li>
+<li>radius：包围圆形的半径</li>
+<li>points:轮廓<br>
+<strong>实际代码展示</strong></li>
+</ul>
+<pre><code class="language-python">import  cv2
+import  numpy as np
+import matplotlib.pyplot as plt
+
+def img_show(name,img):
+    cv2.imshow('name',img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+img=cv2.imread('rectangle.png')
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+img_show(&quot;con&quot;,thresh)
+binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+
+
+for i in range (len(contours)):
+    x, y, w, h = cv2.boundingRect(contours[i])
+    (x1,y1),r=cv2.minEnclosingCircle(contours[i])
+    center=(int(x1),int(y1))
+    radius=int(r)
+    #矩形包边框
+    result = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),5)
+    #最小包围圆形
+    result1=cv2.circle(img,center,radius,(0,255,0),5)
+
+img_show('result',result)
+img_show('result1',result1)
+</code></pre>
+<p>效果图：<br>
+<img src="https://WalkingPineapple.github.io/post-images/1581492353756.png" alt="" loading="lazy"><br>
+#最优拟合椭圆<br>
+retval=cv2.fitEllipse(points)</p>
+<ul>
+<li>retval：返回一个外界矩形，这个外接矩形的质心、宽、高、旋转角度等参数和椭圆中的中心点、轴长度、旋转角度想吻合</li>
+<li>points：轮廓<br>
+#最优拟合直线<br>
+line=cv2.fitLine.（points, distType, param, reps, aeps）</li>
+<li>line：返回值，直线参数</li>
+<li>points：轮廓</li>
+<li>distType：距离类型，最优即是距离最短</li>
+<li>param：距离参数，与所选距离类型有关，设置为0会自动选择最优值</li>
+<li>reps:拟合直线的径向精度，通常情况下：0.01</li>
+<li>aeps：拟合直线的角度精度，通常情况下：0.01<br>
+#最小外包三角形<br>
+retval, triangle =CV2. minEnclosingTriangle(points)</li>
+<li>retval:三角形面积</li>
+<li>triangle：三角形的顶点集</li>
+</ul>
+<p><strong>实际代码演示</strong></p>
+<pre><code class="language-python">img=cv2.imread('ellipse.png')
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+img_show(&quot;con&quot;,thresh)
+binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+rows,cols=img.shape[:2]
+
+for i in range (len(contours)):
+    # x, y, w, h = cv2.boundingRect(contours[i])
+    # (x1,y1),r=cv2.minEnclosingCircle(contours[i])
+    # center=(int(x1),int(y1))
+    # radius=int(r)
+    # #矩形包边框
+    # result = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),5)
+    # result1=cv2.circle(img,center,radius,(0,255,0),5)
+
+    #椭圆
+    ellipse=cv2.fitEllipse(contours[i])
+    result=cv2.ellipse(img,ellipse,(0,255,0),5)
+    #直线（欧氏距离)
+    x,y,x1,y1=cv2.fitLine(contours[i],cv2.DIST_L2,0,0.01,0.01)
+    lefty=int((-x1*y/x+y1))
+    righty=int(((cols-x1)*y/x)+y1)
+    result1=cv2.line(img,(cols-1,righty),(0,lefty),(0,0,255),5)
+    #三角形
+    area,triangle=cv2.minEnclosingTriangle(contours[i])
+    for j in range(0,3):
+        result2=cv2.line(img,tuple(triangle[j][0]),tuple(triangle[(j+1)%3][0]),(18,239,252),5)
+
+
+
+img_show('result',result)
+img_show('result1',result1)
+img_show('result2', result2)
+</code></pre>
+<p>效果图如下：<br>
+<img src="https://WalkingPineapple.github.io/post-images/1581492369613.png" alt="" loading="lazy"></p>
+<h4 id="轮廓近似">轮廓近似</h4>
+<p>拟合一个逼近多边形轮廓<br>
+approxCurve= cv2. approxPolyDP（curve, epsilon, closed）</p>
+<ul>
+<li>apprpxCurve：返回值 逼近多边形的点集</li>
+<li>curve：轮廓</li>
+<li>epsilon：精度，原始轮廓的边界点与逼近多边形边界之间的最大距离</li>
+<li>closed：True：封闭，反之，不封闭<br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">epsilon = 0.02*cv2.arcLength(contours[0],True)
+approx = cv2.approxPolyDP(contours[0],epsilon,True)
+draw_img = img.copy()
+res = cv2.drawContours(draw_img, [approx], -1, (0, 255, 0), 2)
+img_show('res',res)
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581492393772.png" alt="" loading="lazy"></figure>
+<h4 id="凸包">凸包</h4>
+<p>通过轮廓上的点去构成一个多边形，并且这个多边形会包含原有的轮廓。</p>
+<p>hull=cv2.convexHull(points,clockwise,returnPoints)</p>
+<ul>
+<li>hull:凸角点</li>
+<li>clockwise:控制凸角点是顺时针（True）方向还是逆时针（False）方向排列。</li>
+<li>returnPoints：如果为True，则返回凸角点的坐标值，如果为False，则返回凸角点的索引<br>
+在凸包中， 凸包与轮廓之间的部分，我们就称为凸缺陷。<br>
+convexityDefects=cv2.convexityDefects(contour,convexhull)</li>
+<li>contour：轮廓</li>
+<li>convexhull：凸包，在获取凸包的过程中，必须返回凸角点的索引<br>
+<strong>实际代码演示</strong></li>
+</ul>
+<pre><code class="language-python">#凸包
+#返回坐标值
+hull_xy=cv2.convexHull(contours[0],clockwise=True,returnPoints=True)
+print(&quot;凸角点的坐标值为&quot;,hull_xy)
+hull_index=cv2.convexHull(contours[0],clockwise=True,returnPoints=False)
+print(&quot;凸角点的索引&quot;,hull_index)
+#绘制凸包
+result=cv2.polylines(img,[hull_xy],True,(0,255,0),5)
+img_show('convexity',result)
+</code></pre>
+<p>效果图：</p>
+<figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581492403515.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://WalkingPineapple.github.io/post-images/1581492411778.png" alt="" loading="lazy"></figure>
+<p>从图中不难看出，凸包的凸角点都是凸的，凸包内，任意三个点的内角都小与180°。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  我们看到的只是冰山一角。
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9B%BE%E5%83%8F%E8%BD%AE%E5%BB%93">图像轮廓</a>
+<ul>
+<li><a href="#%E5%9B%BE%E5%83%8F%E6%8B%9F%E5%90%88">图像拟合</a>
+<ul>
+<li><a href="#%E8%BE%B9%E7%95%8C%E7%9F%A9%E5%BD%A2">边界矩形</a></li>
+<li><a href="#%E8%BE%B9%E7%95%8C%E5%9C%86%E5%BD%A2">边界圆形</a></li>
+<li><a href="#%E8%BD%AE%E5%BB%93%E8%BF%91%E4%BC%BC">轮廓近似</a></li>
+<li><a href="#%E5%87%B8%E5%8C%85">凸包</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://WalkingPineapple.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://WalkingPineapple.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: '',
+    appKey: '',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨指点一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>
