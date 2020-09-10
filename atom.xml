@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-09-09T16:35:05.445Z</updated>
+    <updated>2020-09-10T15:41:34.239Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,80 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[Web渗透——信息搜集]]></title>
+        <id>https://WalkingPineapple.github.io/web-shen-tou-xin-xi-sou-ji/</id>
+        <link href="https://WalkingPineapple.github.io/web-shen-tou-xin-xi-sou-ji/">
+        </link>
+        <updated>2020-09-10T15:30:26.000Z</updated>
+        <content type="html"><![CDATA[<p>信息收集，顾名思义，就是收集目标组织的信息，比如服务器配置信息、网站敏感信息（域名、IP、系统、CMS指纹、开放端口）</p>
+<h2 id="域名查询">域名查询</h2>
+<p>获取域名注册信息</p>
+<h3 id="备案查询">备案查询</h3>
+<p>备案号是网站是否合法注册经营的标志，可随时到国家工业和信息化部网站备案系统上查询该ICP备案的相关详细信息。</p>
+<pre><code>查询网站：
+ICP备案查询：www.beianbeian.com
+天眼查、企查查等查询工具。
+whois查询：whois.Chinaz.com （Kali 中已经集成工具）
+</code></pre>
+<h3 id="子域名查询">子域名查询</h3>
+<p>子域名就是二级域名</p>
+<h4 id="子域名检测工具">子域名检测工具</h4>
+<pre><code>Layer子域名挖掘机 K8 WYDOMAIN subdomainsBurte
+</code></pre>
+<h4 id="搜索引擎语法">搜索引擎语法</h4>
+<pre><code>以Google为例，通过搜索引擎的语法配合关键字可以进行搜索，常用Google语法如下：
+1.site：指定域名
+2.Inurl：URL存在关键字的网页
+3.Intext：网页正文中的关键字
+4.Filetype：指定文件类型
+5.Intitle：网页标题中的关键字
+6.Info：指定站点的基本信息
+7.Cache：Google缓存
+</code></pre>
+<p>以学校后台管理系统为例：</p>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1599752076873.png" alt="" loading="lazy"></figure>
+<h4 id="暴力枚举">暴力枚举</h4>
+<pre><code>Layer子域名挖掘机、K8、subdomainsBurte等
+
+</code></pre>
+<h4 id="ssl证书">SSL证书</h4>
+<pre><code>证书透明度（Certificate Transparency）是证书授权机构CA的一个项目，CA会将每一个SSL证书发布到公共日志中，一个SSL或TLS常常包含了域名、子域名、邮件地址等
+常用SSL证书查询：censys.io、crt.sh
+</code></pre>
+<p>以某度为例：</p>
+<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1599752132266.png" alt="" loading="lazy"></figure>
+<h2 id="端口信息">端口信息</h2>
+<p>渗透测试中，端口信息尤为重要，通过收集目标主机的开放端口，可以判断该主机存在服务，常用端口及攻击方向如下：<img src="https://WalkingPineapple.github.io/post-images/1599752115037.png" alt="" loading="lazy"></p>
+<p><img src="https://WalkingPineapple.github.io/post-images/1599752088134.png" alt="" loading="lazy"><br>
+<img src="https://WalkingPineapple.github.io/post-images/1599752125574.png" alt="" loading="lazy"></p>
+<pre><code>常用的端口扫描工具有：scanport、御剑端口扫描、nmap
+</code></pre>
+<p>Nmap后期将会分一章专题介绍，以御剑端口扫描为例：<br>
+<img src="https://WalkingPineapple.github.io/post-images/1599752181385.png" alt="" loading="lazy"></p>
+<h2 id="指纹识别">指纹识别</h2>
+<pre><code>在渗透时，有很多的指纹检测对象：CMS信息（织梦、Discuz、PHPwind）、前端技术、Web服务器、开发语言、操作系统等。
+为此，常用的指纹识别工具：WhatWeb、御剑指纹识别、Wappalyzer
+云溪指纹：www.yunsee.cn/finger.html
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1599752187587.png" alt="" loading="lazy"></figure>
+<h2 id="ip">IP</h2>
+<p>IP地址的重要性不言而喻，但是在实际渗透中，很多目标服务器大多使用了CDN（内容分发）服务<br>
+· 如何判断主机服务器是否使用CDN服务？</p>
+<pre><code>
+1.直接Ping目标主域，查看返回ping 域名是否和主域一致
+2.多地ping域名，如果ping出的IP地址一致，极有可能不存在CDN
+3.使用zoomeye等工具查询
+</code></pre>
+<p>· 如果目标使用CDN，如何绕过CDN，查询主机真实IP呢？</p>
+<pre><code>1.内部邮箱源，如RSS，一般邮箱都在内部系统，没有经过CDN的解析，可以通过邮件的源代码查找真实IP
+2.C段、盘站查询
+3.扫描网站测试文件，如phpinfo
+4.如果该目标主机的CDN只针对国内用户，可以通过国外代理进行访问查询
+5.查询域名解析记录、绕过CloudFlare等查询方式
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ 重拾计算机的网络 OSI ]]></title>
         <id>https://WalkingPineapple.github.io/chong-shi-ji-suan-ji-de-wang-luo-osi/</id>
@@ -696,59 +770,6 @@ retval=cv2.moments(array,binaryImage)</p>
 <pre><code class="language-python">print(&quot;第&quot; + str(i) + &quot;轮廓的面积&quot;, cv2.moments(contours[i]))
 </code></pre>
 <figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581423327873.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[图像金字塔]]></title>
-        <id>https://WalkingPineapple.github.io/tu-xiang-jin-zi-ta/</id>
-        <link href="https://WalkingPineapple.github.io/tu-xiang-jin-zi-ta/">
-        </link>
-        <updated>2020-02-10T13:58:04.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="图像金字塔">图像金字塔</h2>
-<p>高分辨率图像产生的低分辨率图像集合。</p>
-<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581343121950.png" alt="" loading="lazy"></figure>
-<h3 id="高斯金字塔">高斯金字塔</h3>
-<pre><code>将原图像不断使用高斯滤波器进行滤波，将滤波图像删除偶数行和偶数列删除（向下采样），通过向下采样，原图像像素值丢失，分辨率减小。
-dst=cv2.pyrdown(src,dstsize,borderType)
-- src:原图像
-- dstsize：目标图像，可选参数，默认情况下，输出图像的大小为Size((src.cols+1)/2, (src.rows+1)/2)
-- borderType：边框
-</code></pre>
-<p><strong>实际代码演示</strong></p>
-<pre><code class="language-python">down=cv2.pyrDown(img)
-img_show('down',down)
-print(down.shape)
-</code></pre>
-<pre><code>同时， 向上采样则是通过新值为零的行和列，在用先前的卷积核*4和放大的图像卷积，保证我们得到的像素值都在[0,255]以内
-</code></pre>
-<p>dst=cv2.pyrup(src,dstsize,borderType)<br>
-- src:原图像<br>
-- dstsize：目标图像，可选参数，默认情况下，输出图像的大小为Size(src.col<em>2, src.rows</em>2)<br>
-- borderType：边框<br>
-<strong>实际代码演示</strong></p>
-<pre><code class="language-python">#向上采样
-up=cv2.pyrUp(img)
-img_show('up',up)
-print(up.shape)
-</code></pre>
-<p><img src="https://WalkingPineapple.github.io/post-images/1581343142999.png" alt="" loading="lazy"><br>
-PS:向下采样和向上采样的操作都是不可逆的。</p>
-<h3 id="拉普拉斯金字塔">拉普拉斯金字塔</h3>
-<p>通过拉普拉斯金字塔，我们可以向上采样的时能够恢复较高的原始图像。具体操作如下：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi mathvariant="normal">L</mi><mi mathvariant="normal">i</mi></msub><mo>=</mo><msub><mi mathvariant="normal">G</mi><mi mathvariant="normal">i</mi></msub><mo>−</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">U</mi><mi mathvariant="normal">p</mi></mrow><mrow><mo fence="true">(</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">D</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">w</mi><mi mathvariant="normal">n</mi></mrow><mrow><mo fence="true">(</mo><msub><mi mathvariant="normal">G</mi><mi mathvariant="normal">i</mi></msub><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathrm{L}_{\mathrm{i}}=\mathrm{G}_{\mathrm{i}}-\mathrm{PyrUp}\left(\mathrm{PyrDown}\left(\mathrm{G}_{\mathrm{i}}\right)\right)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">i</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">G</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">i</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">P</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span><span class="mord mathrm">r</span><span class="mord mathrm">U</span><span class="mord mathrm">p</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathrm">P</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span><span class="mord mathrm">r</span><span class="mord mathrm">D</span><span class="mord mathrm">o</span><span class="mord mathrm" style="margin-right:0.01389em;">w</span><span class="mord mathrm">n</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord mathrm">G</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">i</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></p>
-<ul>
-<li>Li：拉普拉斯金字塔第i层</li>
-<li>Gi：高斯金字塔的第i层<br>
-<img src="https://WalkingPineapple.github.io/post-images/1581343155632.png" alt="" loading="lazy"><br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">#拉普拉斯金字塔
-up_1=cv2.pyrUp(down)
-result=img-up_1
-img_show('result',result)
-print(result.shape)
-</code></pre>
 ]]></content>
     </entry>
 </feed>
