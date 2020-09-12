@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-09-10T15:41:34.239Z</updated>
+    <updated>2020-09-12T12:21:51.932Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,53 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[计算机网络——STP]]></title>
+        <id>https://WalkingPineapple.github.io/ji-suan-ji-wang-luo-stp/</id>
+        <link href="https://WalkingPineapple.github.io/ji-suan-ji-wang-luo-stp/">
+        </link>
+        <updated>2020-09-12T12:20:21.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>在一次考试中，发现自己有很多不足，如STP、VLAN 想借用博客给自己充充电，补一补</strong><br>
+<strong>如有不对的地方，欢迎指正</strong></p>
+<h2 id="stp相关概念">STP相关概念</h2>
+<p>在学习STP之前，我们首先需要了解一下STP相关概念</p>
+<h3 id="网络环路">网络环路</h3>
+<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1599913256268.png" alt="" loading="lazy"></figure>
+<p>如上图所示，A/B/C通过1，2,3交换机互相通信，但如果交换机1,2,3某一链路发生故障时，很容易导致其余两机器无法通信，所以我们的需要增加一条冗余链路，为了防止链路故障发生导致无法通信，增加冗余链路后，如下图所示：<br>
+<img src="https://WalkingPineapple.github.io/post-images/1599913265057.png" alt="" loading="lazy"><br>
+增加一条冗余链路，就形成了网络环路。</p>
+<h3 id="广播风暴">广播风暴</h3>
+<p><code>以上图为例，增加一条冗余链路，防止链路故障时发生通信，但形成的网络环路，会将任意PC机A/B/C的发送的数据广播到每一个节点，包括自己，而造成大量复制、传播数据帧，导致网络性能下降或瘫软，这就是广播风暴。</code></p>
+<h3 id="stp">STP</h3>
+<p><code>STP(Spanning Tree Protocol)生成树协议，是一种链路管理协议，可以从逻辑上断开链路，防止广播风暴，还能起到备份线路的作用。</code></p>
+<h3 id="bpdu">BPDU</h3>
+<p><code>BPDU(Bridge Protocol Data Unit)网桥协议数据单元，在交换机中，常常使用BPDU交换STP信息，BPDU包括了实现STP的根网桥ID、发送网桥ID、端口ID等信息</code></p>
+<h3 id="stp状态">STP状态</h3>
+<p>交换机启动STP后，接口有五种状态：<br>
+<img src="https://WalkingPineapple.github.io/post-images/1599913271751.png" alt="" loading="lazy"></p>
+<h2 id="stp原理">STP原理</h2>
+<pre><code>STP工作原理：
+1.选择根网桥
+    每一台交换机都会有一个唯一的网桥ID（BID，2字节的网桥优先级，6字节的MAC地址），最小BID值的交换机作为根交换机。
+2.选择根端口
+    选择根网桥后，选择一个距离他最近的其他非根网桥作为根端口，
+        距离判断：
+            交换机到根桥的总路径成本最低的端口，路径通过带宽计算得到，10Mb/S路径为100，100Mb/S为19,1000M/s为4，开销最小的端口，作为非根交换机得根端口
+                如果路径成本相同，则比较上一级（接收BPDU）发送者的桥ID，选择桥ID最小的为对应端口。
+                    如果网桥ID相同，则比较发送端口ID，端口ID由端口优先级（8位）和端口编号（8位）组成，选出优先级最小的对应端口
+                        如果优先级相同，则选择端口号最小的为根段端口
+3.选择指定端口
+    每个网段选择一个指定端口，根桥所有端口均为指定端口，
+        根路径成本最低
+        端口所在网桥ID值最小
+        端口ID值小
+</code></pre>
+<p><strong>交换机优先级默认为32768，STP端口默认优先级为128</strong></p>
+<h2 id="端口汇聚">端口汇聚</h2>
+<pre><code>STP只能在设备间保证一条活动链路，而其他链路将处于闲置备用状态，硬件资源容易浪费，因此，端口汇聚成多个逻辑链路，可以成倍的提高设备间的宽带。
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Web渗透——信息搜集]]></title>
         <id>https://WalkingPineapple.github.io/web-shen-tou-xin-xi-sou-ji/</id>
@@ -660,116 +707,6 @@ img_show('convexity',result)
 <figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581492403515.png" alt="" loading="lazy"></figure>
 <figure data-type="image" tabindex="4"><img src="https://WalkingPineapple.github.io/post-images/1581492411778.png" alt="" loading="lazy"></figure>
 <p>从图中不难看出，凸包的凸角点都是凸的，凸包内，任意三个点的内角都小与180°。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[图像轮廓（一）]]></title>
-        <id>https://WalkingPineapple.github.io/tu-xiang-lun-kuo-yi/</id>
-        <link href="https://WalkingPineapple.github.io/tu-xiang-lun-kuo-yi/">
-        </link>
-        <updated>2020-02-11T12:12:03.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="图像轮廓">图像轮廓</h2>
-<p>边缘与轮廓简单区别：边缘有无连续，轮廓一定连续。</p>
-<h3 id="查找轮廓">查找轮廓</h3>
-<p>在OpenCV中，函数cv2.findContours()可以帮助我们查找出图像的轮廓<br>
-img，contours，hierarchy=cv2=.findContours(img,mode,method)</p>
-<ul>
-<li>img:返回值，与原始图像一致</li>
-<li>contours:返回的轮廓，每个轮廓都是由若干点构成，contours[i][j]:第i个轮廓的第j个点，contours返回值是list类型，其中每个轮廓都是ndarray结构</li>
-<li>hierarchy：轮廓层次，轮廓之间存在一种包含形式，外部的轮廓即是父轮廓，内部则是子轮廓。每个轮廓对应四个元素来说明当前轮廓的关系，Next（后一个轮廓的索引编号）、Previous（前一个轮廓的索引编号）、FirstChild（第一子轮廓的索引编号）、Parent（父轮廓的索引编号）。如果对应关系为空，则hierarchy值为-1</li>
-<li>img：原始图像，非零值处理为1,（变为二值图像）</li>
-<li>mode：轮廓检索模式
-<ul>
-<li>RETR_EXTERNAL ：只检索最外面的轮廓；</li>
-<li>RETR_LIST：检索所有的轮廓，并将其保存到一条链表当中；</li>
-<li>RETR_CCOMP：检索所有的轮廓，并将他们组织为两层：顶层是各部分的外部边界，第二层是空洞的边界;</li>
-<li>RETR_TREE：检索所有的轮廓，并重构嵌套轮廓的整个层次;</li>
-</ul>
-</li>
-<li>metrhod：轮廓逼近方法
-<ul>
-<li>CHAIN_APPROX_NONE：以Freeman链码的方式输出轮廓，所有其他方法输出多边形（顶点的序列）。</li>
-<li>CHAIN_APPROX_SIMPLE:压缩水平的、垂直的和斜的部分，也就是，函数只保留他们的终点部分。(保存了4个点）</li>
-<li>CHAIN_APPROX_TC89_L1:使用teh-China chain 近似算法的一种风格</li>
-<li>CHAIN_APPROX_TC89_KCOS:使用teh-China chain 近似算法的一种风格<br>
-针对查找的轮廓，可以对轮廓进行计算周长和面积，具体看代码演示。</li>
-</ul>
-</li>
-</ul>
-<h3 id="绘制轮廓">绘制轮廓</h3>
-<p>在我们将轮廓查找到之后，我们要将轮廓在原始图像中画出来，使用cv2.drawContours()绘制轮廓<br>
-image=cv2.drawContours(img,contours,contourIdx,color,thickness,lineType,hierarchy,maxLevel,offset)</p>
-<ul>
-<li>image:返回值，绘制完的图像</li>
-<li>img：原始图像，待绘制，绘制是直接在原图操作，会直接在原图操作，不可逆</li>
-<li>contours：通过cv2.findContours()查找出来的轮廓</li>
-<li>conttourIdx：绘制轮廓的索引默认为-1，则绘制全部轮廓</li>
-<li>color：轮廓的颜色，BGR</li>
-<li>thickness：可选参数，的粗细，默认-1，绘制实心轮廓</li>
-<li>lineType：可选参数，线条的样式</li>
-<li>hierarchy：对应cv2.findContours()所输出的层次信息</li>
-<li>maxLevel：控制轮廓深度，如果为0，则表示绘制第0层的轮廓，如果为非零正数，表示绘制最高层一下相同数量级的轮廓。</li>
-<li>offset：偏移量，让轮廓在不同置展示出来<br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">import  cv2
-import  numpy as np
-import matplotlib.pyplot as plt
-
-def img_show(name,img):
-    cv2.imshow('name',img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-# img=cv2.imread(&quot;timg.jpg&quot;)
-img=cv2.imread(&quot;orgin.png&quot;)
-gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-
-ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
-img_show(&quot;con&quot;,thresh)
-print(thresh.shape)
-
-# binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-# binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
-# binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
-binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-#查看图中有几个轮廓
-print(len(contours))
-print(hierarchy)
-#绘制轮廓
-draw_img=img.copy();
- result=cv2.drawContours(draw_img,contours,-1,(0,255,0),5)
-img_show('result',result)
-</code></pre>
-<p>原图如下：</p>
-<p><img src="https://WalkingPineapple.github.io/post-images/1581423167858.png" alt="" loading="lazy"><br>
-效果图如下：</p>
-<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581423206221.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581423304894.png" alt="" loading="lazy"></figure>
-<h3 id="图像矩">图像矩</h3>
-<p>对图像像素点的灰度值进行的一种特殊加权方式。它代表了图像的特征。在OpenCV中，提供了moments()函数来获取图像的moments特征（轮廓矩）<br>
-retval=cv2.moments(array,binaryImage)</p>
-<ul>
-<li>retval：返回值，也就是矩特征，主要包括
-<ul>
-<li>零阶矩：m00 (轮廓的面积)</li>
-<li>一阶矩：m10,m01</li>
-<li>二阶矩:   m20,m11,m02</li>
-<li>三阶矩：m30,m21,m12,m03</li>
-<li>二阶中心矩：mu20,mu11,mu02</li>
-<li>三阶中心矩：mu30,mu21,mu12,mu03</li>
-<li>二阶Hu矩：nu20,nu11,nu02</li>
-<li>三阶Hu矩：nu30,nu21,nu12,nu03</li>
-</ul>
-</li>
-<li>array：点集或者二值图像，如果是点集，函数会这个点集当作轮廓的顶点，把整个点记为一个轮廓</li>
-<li>binaryImage:如果为True，array内所有的非零值都会处理为1<br>
-通过轮廓矩，我们可以判断两个轮廓是否相似。<br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">print(&quot;第&quot; + str(i) + &quot;轮廓的面积&quot;, cv2.moments(contours[i]))
-</code></pre>
-<figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581423327873.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
