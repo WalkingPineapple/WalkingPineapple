@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-09-12T12:21:51.932Z</updated>
+    <updated>2020-09-16T13:44:18.566Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,66 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[重拾HTTP协议]]></title>
+        <id>https://WalkingPineapple.github.io/chong-shi-http-xie-yi/</id>
+        <link href="https://WalkingPineapple.github.io/chong-shi-http-xie-yi/">
+        </link>
+        <updated>2020-09-16T13:43:20.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="http协议">HTTP协议</h1>
+<p>HTTP（Hyper Text Transfer Protocol）超文本传输协议.</p>
+<h2 id="工作原理">工作原理</h2>
+<p>HTTP协议常用于B/S架构,通过浏览器向Web服务器发送请求，web服务器收到请求后，向客户端发送响应消息。<br>
+HTTP标准端口：80 HTTPS标准端口：443<br>
+HTTP使用了URL统一资源标识符来传输数据和建立连接</p>
+<h2 id="消息结构">消息结构</h2>
+<p>客户端发送请求结构：</p>
+<ul>
+<li>请求行（request time）：请求行一个一个方法符号开头，空格分开，后面接URL和协议版本</li>
+<li>请求头（header）：包括HOST、User-Agent Referer、Cookie等</li>
+<li>请求数据</li>
+</ul>
+<h3 id="请求方法">请求方法</h3>
+<pre><code>GET: 请求获取Request=URL所表示的资源，即页面信息
+POST：想指定的资源提交数据请处理请看清，数据包含在请求体中
+HEAD：请求获取由Request-URL所标识资源响应的消息报头
+PUT：请求服务器存储一个资源，并用Request-URL作为其标识
+DELETE:请求服务器删除指定页面
+OPTIONS：允许客户端查看服务器性能
+CONNECT：HTTP/1.1协议中预留给能将链接改为管道方式的代理服务器
+TRACE：回显服务器收到的请求，用于测试或诊断
+Content-Type：内容类型
+</code></pre>
+<h3 id="请求报头">请求报头</h3>
+<pre><code> User-Agent：客户端或者浏览器类型
+ Accept:指定客户端可以接受哪一类型的信息
+ Referer：当前页面的URL
+ Cookie：身份凭证
+ Host:主机地址和端口
+</code></pre>
+<h2 id="响应报头">响应报头</h2>
+<p>服务端发送请求结构:</p>
+<ul>
+<li>状态行：服务器HTTP协议版本、状态码</li>
+<li>消息报头</li>
+<li>响应正文</li>
+</ul>
+<h3 id="状态码">状态码</h3>
+<pre><code>200 OK 客户端请求成功
+400 Bad Request 客户端请求语法错误，不能被服务器理解
+403 Forbidden 服务器收到请求，但是拒绝提供服务
+404 Not Found 请求资源不存在
+500 Internal Server Error 服务器发生不可预期的错误
+503 Server Unavailable 服务器当前不能处理客户端请求，一段时间后恢复
+</code></pre>
+<h3 id="消息报头">消息报头</h3>
+<pre><code>Server Web 服务器名称
+Set-cookie 服务端设置和页面关联的Cookie
+Refresh 浏览器还有多少时间后刷新文档
+Location 客户应该去哪里提取资源，配合302状态码使用
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[计算机网络——STP]]></title>
         <id>https://WalkingPineapple.github.io/ji-suan-ji-wang-luo-stp/</id>
@@ -540,173 +600,6 @@ plt.hist(equ.ravel(),256)
 plt.show()
 </code></pre>
 <figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581511121179.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[图像轮廓（二）]]></title>
-        <id>https://WalkingPineapple.github.io/tu-xiang-lun-kuo-er/</id>
-        <link href="https://WalkingPineapple.github.io/tu-xiang-lun-kuo-er/">
-        </link>
-        <updated>2020-02-12T07:23:54.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="图像轮廓">图像轮廓</h2>
-<h3 id="图像拟合">图像拟合</h3>
-<p>用一个多边形去拟合我们需要的轮廓。</p>
-<h4 id="边界矩形">边界矩形</h4>
-<p>retval=cv2.boundingRect(array)</p>
-<ul>
-<li>
-<p>retval:返回值，矩形左上角的顶点坐标值和矩形边界的宽度和高度，分别是:</p>
-<ul>
-<li>矩形左上角的X坐标</li>
-<li>矩形左上角的y坐标</li>
-<li>矩形边界的x方向的长度</li>
-<li>矩形边界的y方向的长度</li>
-</ul>
-</li>
-<li>
-<p>array：灰度图像或者轮廓</p>
-<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581492330618.png" alt="" loading="lazy"></figure>
-</li>
-</ul>
-<h4 id="边界圆形">边界圆形</h4>
-<p>center，radius=cv2.minEnclosingCircle(points)</p>
-<ul>
-<li>center:包围圆形的圆心</li>
-<li>radius：包围圆形的半径</li>
-<li>points:轮廓<br>
-<strong>实际代码展示</strong></li>
-</ul>
-<pre><code class="language-python">import  cv2
-import  numpy as np
-import matplotlib.pyplot as plt
-
-def img_show(name,img):
-    cv2.imshow('name',img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-img=cv2.imread('rectangle.png')
-gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
-img_show(&quot;con&quot;,thresh)
-binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-
-
-for i in range (len(contours)):
-    x, y, w, h = cv2.boundingRect(contours[i])
-    (x1,y1),r=cv2.minEnclosingCircle(contours[i])
-    center=(int(x1),int(y1))
-    radius=int(r)
-    #矩形包边框
-    result = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),5)
-    #最小包围圆形
-    result1=cv2.circle(img,center,radius,(0,255,0),5)
-
-img_show('result',result)
-img_show('result1',result1)
-</code></pre>
-<p>效果图：<br>
-<img src="https://WalkingPineapple.github.io/post-images/1581492353756.png" alt="" loading="lazy"><br>
-#最优拟合椭圆<br>
-retval=cv2.fitEllipse(points)</p>
-<ul>
-<li>retval：返回一个外界矩形，这个外接矩形的质心、宽、高、旋转角度等参数和椭圆中的中心点、轴长度、旋转角度想吻合</li>
-<li>points：轮廓<br>
-#最优拟合直线<br>
-line=cv2.fitLine.（points, distType, param, reps, aeps）</li>
-<li>line：返回值，直线参数</li>
-<li>points：轮廓</li>
-<li>distType：距离类型，最优即是距离最短</li>
-<li>param：距离参数，与所选距离类型有关，设置为0会自动选择最优值</li>
-<li>reps:拟合直线的径向精度，通常情况下：0.01</li>
-<li>aeps：拟合直线的角度精度，通常情况下：0.01<br>
-#最小外包三角形<br>
-retval, triangle =CV2. minEnclosingTriangle(points)</li>
-<li>retval:三角形面积</li>
-<li>triangle：三角形的顶点集</li>
-</ul>
-<p><strong>实际代码演示</strong></p>
-<pre><code class="language-python">img=cv2.imread('ellipse.png')
-gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-ret,thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
-img_show(&quot;con&quot;,thresh)
-binary,contours,hierarchy=cv2.findContours(thresh,cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-rows,cols=img.shape[:2]
-
-for i in range (len(contours)):
-    # x, y, w, h = cv2.boundingRect(contours[i])
-    # (x1,y1),r=cv2.minEnclosingCircle(contours[i])
-    # center=(int(x1),int(y1))
-    # radius=int(r)
-    # #矩形包边框
-    # result = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),5)
-    # result1=cv2.circle(img,center,radius,(0,255,0),5)
-
-    #椭圆
-    ellipse=cv2.fitEllipse(contours[i])
-    result=cv2.ellipse(img,ellipse,(0,255,0),5)
-    #直线（欧氏距离)
-    x,y,x1,y1=cv2.fitLine(contours[i],cv2.DIST_L2,0,0.01,0.01)
-    lefty=int((-x1*y/x+y1))
-    righty=int(((cols-x1)*y/x)+y1)
-    result1=cv2.line(img,(cols-1,righty),(0,lefty),(0,0,255),5)
-    #三角形
-    area,triangle=cv2.minEnclosingTriangle(contours[i])
-    for j in range(0,3):
-        result2=cv2.line(img,tuple(triangle[j][0]),tuple(triangle[(j+1)%3][0]),(18,239,252),5)
-
-
-
-img_show('result',result)
-img_show('result1',result1)
-img_show('result2', result2)
-</code></pre>
-<p>效果图如下：<br>
-<img src="https://WalkingPineapple.github.io/post-images/1581492369613.png" alt="" loading="lazy"></p>
-<h4 id="轮廓近似">轮廓近似</h4>
-<p>拟合一个逼近多边形轮廓<br>
-approxCurve= cv2. approxPolyDP（curve, epsilon, closed）</p>
-<ul>
-<li>apprpxCurve：返回值 逼近多边形的点集</li>
-<li>curve：轮廓</li>
-<li>epsilon：精度，原始轮廓的边界点与逼近多边形边界之间的最大距离</li>
-<li>closed：True：封闭，反之，不封闭<br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">epsilon = 0.02*cv2.arcLength(contours[0],True)
-approx = cv2.approxPolyDP(contours[0],epsilon,True)
-draw_img = img.copy()
-res = cv2.drawContours(draw_img, [approx], -1, (0, 255, 0), 2)
-img_show('res',res)
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581492393772.png" alt="" loading="lazy"></figure>
-<h4 id="凸包">凸包</h4>
-<p>通过轮廓上的点去构成一个多边形，并且这个多边形会包含原有的轮廓。</p>
-<p>hull=cv2.convexHull(points,clockwise,returnPoints)</p>
-<ul>
-<li>hull:凸角点</li>
-<li>clockwise:控制凸角点是顺时针（True）方向还是逆时针（False）方向排列。</li>
-<li>returnPoints：如果为True，则返回凸角点的坐标值，如果为False，则返回凸角点的索引<br>
-在凸包中， 凸包与轮廓之间的部分，我们就称为凸缺陷。<br>
-convexityDefects=cv2.convexityDefects(contour,convexhull)</li>
-<li>contour：轮廓</li>
-<li>convexhull：凸包，在获取凸包的过程中，必须返回凸角点的索引<br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">#凸包
-#返回坐标值
-hull_xy=cv2.convexHull(contours[0],clockwise=True,returnPoints=True)
-print(&quot;凸角点的坐标值为&quot;,hull_xy)
-hull_index=cv2.convexHull(contours[0],clockwise=True,returnPoints=False)
-print(&quot;凸角点的索引&quot;,hull_index)
-#绘制凸包
-result=cv2.polylines(img,[hull_xy],True,(0,255,0),5)
-img_show('convexity',result)
-</code></pre>
-<p>效果图：</p>
-<figure data-type="image" tabindex="3"><img src="https://WalkingPineapple.github.io/post-images/1581492403515.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="4"><img src="https://WalkingPineapple.github.io/post-images/1581492411778.png" alt="" loading="lazy"></figure>
-<p>从图中不难看出，凸包的凸角点都是凸的，凸包内，任意三个点的内角都小与180°。</p>
 ]]></content>
     </entry>
 </feed>
