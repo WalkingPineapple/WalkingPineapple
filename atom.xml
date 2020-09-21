@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-09-16T13:44:18.566Z</updated>
+    <updated>2020-09-21T16:22:58.714Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,237 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[重拾HTML]]></title>
+        <id>https://WalkingPineapple.github.io/chong-shi-html/</id>
+        <link href="https://WalkingPineapple.github.io/chong-shi-html/">
+        </link>
+        <updated>2020-09-21T16:19:51.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>前端知识以前已经学过一些，但是由于工作需要，特地想写博客顺便回忆一下，写的不对的地方，望指出立马改正</strong></p>
+<h2 id="html">HTML</h2>
+<p>HTML(Hypertext Markup langurage）超文本标记语言</p>
+<h2 id="开发环境">开发环境</h2>
+<ul>
+<li>Chrome浏览器</li>
+<li>WebStorm</li>
+</ul>
+<h2 id="基本结构">基本结构</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;!-- 头部信息 通常用来引入外部CSS样式以及JavaScript等--&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+ &lt;title&gt;HTML基本结构&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--网页展示部分--&gt;
+&lt;/body&gt;
+&lt;/html&gt;&lt;/pre&gt;
+</code></pre>
+<h2 id="编码设置">编码设置</h2>
+<p><strong>在我们开发过程中，可能会因为的项目需求设置网页不同的编码</strong></p>
+<pre><code>    在HTML文件中，常见使用编码格式有如下
+        1.UTF-8：国际统一编码，英文使用8位为一字节，中文使用24位为三个字节
+        2.GB2312：国标编码
+        3.GBK：GB2312的升级版，英文和中文都是用双字节，中文支持友好，使用范围没有UTF-8广
+        
+</code></pre>
+<h3 id="设置编码">设置编码</h3>
+<p><em><em>在HTML中，我们通常使用meta标签 申明网页编码</em>,meta标签使用有很多，后面将会逐一介绍</em>*</p>
+<pre><code class="language-html">&lt;meta  charset=&quot;encode type&quot;&gt;
+&lt;!-- eg --&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta charset=&quot;GBK&quot;&gt;
+&lt;meta charset=&quot;GB2312&quot;&gt;
+</code></pre>
+<h3 id="meta标签">meta标签</h3>
+<p><strong>meta写在网页头部中，可以指定网页类型、编码等</strong></p>
+<pre><code>http-equiv:模拟一个 HTTP 响应头。
+content:指定文本类型
+</code></pre>
+<h2 id="标题标签">标题标签</h2>
+<p><strong>常见的标签主要有h1-h6,其中align属性（right left justify center）定义了标签的位置</strong></p>
+<pre><code class="language-html">            &lt;h1 align=&quot;center&quot;&gt;This is H1&lt;/h1&gt;
+            &lt;h2 align=&quot;right&quot;&gt;This is H1&lt;/h2&gt;
+            &lt;h3 align=&quot;left&quot;&gt;This is H1&lt;/h3&gt;
+            &lt;h4 align=&quot;justify&quot;&gt;This is H1&lt;/h4&gt;
+            &lt;h5&gt;This is H1&lt;/h5&gt;
+            &lt;h6&gt;This is H1&lt;/h6&gt;
+</code></pre>
+<h2 id="无序列表">无序列表</h2>
+<p><strong>无序列表类似word中的项目符号，常见项目符号由原点（disc）、方形（square）、空心原点（circle）组成，可以通过Type属性进行设置</strong></p>
+<pre><code class="language-html">            &lt;ul type=&quot;disc&quot;&gt;
+                &lt;li&gt;disc list item1&lt;/li&gt;
+                &lt;li&gt;disc list item2&lt;/li&gt;
+                &lt;li&gt;disc list item3&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;ul type=&quot;square&quot;&gt;
+                &lt;li&gt;square list item1&lt;/li&gt;
+                &lt;li&gt;square list item2&lt;/li&gt;
+                &lt;li&gt;square list item3&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;ul type=&quot;circle&quot;&gt;
+                &lt;li&gt;circle list item1&lt;/li&gt;
+                &lt;li&gt;circle list item2&lt;/li&gt;
+                &lt;li&gt;circle list item3&lt;/li&gt;
+            &lt;/ul&gt;
+</code></pre>
+<h2 id="有序列表">有序列表</h2>
+<p><strong>有序列表通过数字、字母、罗马数字、i等将列表项顺序排序，可以通过Type属性设置</strong></p>
+<pre><code class="language-html">            &lt;ol&gt;
+                &lt;li&gt;number list item1&lt;/li&gt;
+                &lt;li&gt;number list item2&lt;/li&gt;
+                &lt;li&gt;number list item3&lt;/li&gt;
+            &lt;/ol&gt;
+            &lt;ol type=&quot;A&quot;&gt;
+                &lt;li&gt;letter list item1&lt;/li&gt;
+                &lt;li&gt;letter list item2&lt;/li&gt;
+                &lt;li&gt;letter list item3&lt;/li&gt;
+            &lt;/ol&gt;
+            &lt;ol type=&quot;i&quot;&gt;
+                &lt;li&gt;i list item1&lt;/li&gt;
+                &lt;li&gt;i list item2&lt;/li&gt;
+                &lt;li&gt;i list item3&lt;/li&gt;
+            &lt;/ol&gt;
+            &lt;ol type=&quot;I&quot;&gt;
+                &lt;li&gt;roma list item1&lt;/li&gt;
+                &lt;li&gt;roma list item2&lt;/li&gt;
+                &lt;li&gt;roma list item3&lt;/li&gt;
+            &lt;/ol&gt;
+</code></pre>
+<h2 id="图像标签">图像标签</h2>
+<p><strong>图像标签为img标签，主要属性有图像url（src）、图像代替文本（alt）图像高宽（height、width）</strong></p>
+<pre><code class="language-html">&lt;img src=&quot;../image/Logo.png&quot; alt=&quot;This is a logo&quot; width=&quot;200px&quot; height=&quot;200px&quot;&gt;
+</code></pre>
+<h2 id="超链接标签">超链接标签</h2>
+<p><strong>超链接属性主要有链接地址（href） 链接的目标窗口(target[_self,_blank,_top,_parent]) 链接命名（name）</strong></p>
+<pre><code class="language-html">&lt;a href=&quot;#html_top&quot; title=&quot;Go to&quot; name=&quot;goto&quot; &gt;
+                &lt;p&gt;Go top&lt;/p&gt;
+            &lt;/a&gt;
+</code></pre>
+<h2 id="表格">表格</h2>
+<p>**HTML中表格常常由表格（table）、行（tr）、单元格（td）、带表格头的表格（th）、带标题的表格（caption）、带结构的表格（thead、tbody、tfoot）组成<br>
+**</p>
+<pre><code class="language-html">            &lt;table border=&quot;1&quot; cellspacing=&quot;5&quot; cellpadding=&quot;100&quot;&gt;
+                &lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+            &lt;/table&gt;
+</code></pre>
+<p><img src="https://WalkingPineapple.github.io/post-images/1600705307899.png" alt="" loading="lazy">![<br>
+<strong>其中cellpadding为单元格与其内容之间的距离，cellspacing是单元格之间的空白，其余属性为通用属性，border为边框 可以查阅手册</strong></p>
+<h3 id="表格实例操作">表格实例操作</h3>
+<p><strong>表格跨行跨列操作</strong></p>
+<pre><code class="language-html">&lt;table border=&quot;1&quot;&gt;
+                &lt;caption&gt;菜品营业额&lt;/caption&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                    &lt;th rowspan=&quot;2&quot;&gt; 菜品&lt;/th&gt;
+                    &lt;th colspan=&quot;2&quot;&gt;2018&lt;/th&gt;
+                    &lt;th rowspan=&quot;2&quot;&gt;2019&lt;/th&gt;
+                    &lt;th rowspan=&quot;2&quot;&gt;2020&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;上半年&lt;/th&gt;
+                        &lt;th&gt;下半年&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;老J涮肉&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        
+                        &lt;td&gt;老J串串&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+</code></pre>
+<ul>
+<li>rowspan:单元格列数合并</li>
+<li>colspan:单元格行数合并</li>
+</ul>
+<p><strong>在实际开发过程中，table表格使用次数很少，现流行Vue等多种前端框架即可快速实现表格内容展示</strong><br>
+<strong>其中td、tr、th有很多属性未介绍，但这些属性</strong></p>
+<h2 id="表单处理">表单处理</h2>
+<p><strong>HTML表单元素有很多，常见的有输入框（input）、菜单和列表标签（select）、菜单和列表项目（option）、文本域（textarea）、分组（optgroup）</strong></p>
+<h3 id="表单元素案例">表单元素案例</h3>
+<p><strong>表单元素很多，具体使用案例如下</strong></p>
+<pre><code>&lt;h1 align=&quot;center&quot;&gt;User Sign Index&lt;/h1&gt;
+		&lt;table align=&quot;center&quot; &gt;
+			&lt;thead&gt;								
+			&lt;/thead&gt;
+
+			&lt;tbody&gt;
+				&lt;form action=&quot;后端.php&quot; method=&quot;post&quot;&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						username：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;text&quot; name=&quot;username&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the username&quot; /&gt;
+						&lt;/td&gt;
+						
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						password：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the password&quot; /&gt;
+						&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						mail：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;text&quot; name=&quot;mail&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the mail&quot; /&gt;
+						&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						Verification code：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;text&quot; name=&quot;verification&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the Verification code&quot; size=&quot;20&quot;/&gt;
+						&lt;/td&gt;
+						&lt;td&gt;
+							&lt;img src=&quot;../image/vertification.png&quot; width=&quot;50px&quot; height=&quot;20px&quot;&gt;
+						&lt;/td&gt;
+						
+				&lt;/tr&gt;
+				&lt;tr align=&quot;center&quot;&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;submit&quot; id=&quot;&quot; name=&quot;GO&quot; /&gt;
+						&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;/form&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+</code></pre>
+<p><img src="https://WalkingPineapple.github.io/post-images/1600705286989.png" alt="" loading="lazy"><br>
+<strong>特别提示：Get请求和POST请求可以移步HTTP协议有详细介绍</strong></p>
+<h2 id="块级标签和行内标签">块级标签和行内标签</h2>
+<p><strong>在HTML中，主要的标签分为两类，一类是块级标签，一类是行内标签</strong></p>
+<pre><code>块级标签顾名思义就是块级元素，例如DIV标签、P标签等等，
+行内标签最常见的就是span标签
+其中，行内元素不会单独占用一行，直至排不下才换行，但是块级标签独占一行。
+块级标签的布局，将会在下一篇CSS基础 盒子模型中介绍
+</code></pre>
+<h2 id="总结">总结</h2>
+<p><strong>回顾的很简单，毕竟只是回顾，记不起的还需要查手册或资料，从现有开发中，很多前端框架集成已经慢慢将原生的HTML技术取而代之，直接调用插件模块即可，但是并不代表不掌握，换句话说,HTML将是一切框架的基础，无论是前端或后端工程师，都应该掌握学习。<br>
+下一篇，将会回顾CSS基础</strong></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[重拾HTTP协议]]></title>
         <id>https://WalkingPineapple.github.io/chong-shi-http-xie-yi/</id>
@@ -528,78 +759,6 @@ img_back = cv2.magnitude(img_back[:,:,0],img_back[:,:,1])
 </code></pre>
 <p><img src="https://WalkingPineapple.github.io/post-images/1581600290575.png" alt="" loading="lazy"><br>
 字符：22 / 1,614</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[图像直方图]]></title>
-        <id>https://WalkingPineapple.github.io/tu-xiang-zhi-fang-tu/</id>
-        <link href="https://WalkingPineapple.github.io/tu-xiang-zhi-fang-tu/">
-        </link>
-        <updated>2020-02-12T12:35:44.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="图像直方图">图像直方图</h1>
-<h2 id="图像直方图-2">图像直方图</h2>
-<p>通过直方图，可以统计出图像中各个像素的灰度级出现的次数。通常情况下，我们的图像有256个灰度级[0,255]。</p>
-<h4 id="histcv2calchistimageschannelsmaskhistsizerangesaccumulate">hist=cv2.calcHist(images,channels,mask,histSize,ranges,accumulate)</h4>
-<p>-hist：返回一个一维数组，数组内元素是各个灰度级的个数</p>
-<ul>
-<li>images: 原图像图像格式为 uint8 或 ﬂoat32。当传入函数时应 用中括号 [] 括来例如[img]</li>
-<li>channels: 同样用中括号括来它会告函数我们统幅图 像的直方图。如果入图像是灰度图它的值就是 [0]如果是彩色图像 的传入的参数可以是 [0][1][2] 它们分别对应着 BGR。</li>
-<li>mask: 掩模图像。统整幅图像的直方图就把它为 None。但是如 果你想统图像某一分的直方图的你就制作一个掩模图像并 使用它。
-<ul>
-<li>构造掩膜，通常先构造一个像素值都为0的二维数组，在将数组中的指定区域设为255，我们就可以得到掩膜图像</li>
-</ul>
-</li>
-<li>histSize:BINS的数目。也应用中[]括来</li>
-<li>ranges: 像素值范围常为 [0,255]</li>
-<li>accumulate:累积标识，默认值为False，为True： 直方图开始计算不清零，计算的是多个直方图的累积结果，常用于一组图像计算直方图。<br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">img=cv2.imread('timg.jpg',cv2.IMREAD_GRAYSCALE)
-img_show('img',img)
-
-#直方图处理
-
-hist1=cv2.calcHist([img],[0],None,[256],[0,255])
-print(hist1.shape)
-plt.plot(hist1, color='b')
-plt.show()
-
-# 掩膜操作
-
-#构造掩膜
-mask = np.zeros(img.shape[:2], np.uint8)
-print(mask)
-mask[150:200,150:400]=255
-img_show(&quot;mask&quot;,mask)
-
-masked_img = cv2.bitwise_and(img, img, mask=mask)#与操作
-img_show('mask_img',masked_img)
-
-#掩膜操作
-hist2=cv2.calcHist([img],[0],mask,[256],[0,255])
-print(hist2.shape)
-plt.plot(hist2, color='b')
-plt.show()
-
-</code></pre>
-<p><strong>效果图</strong></p>
-<figure data-type="image" tabindex="1"><img src="https://WalkingPineapple.github.io/post-images/1581511050130.png" alt="" loading="lazy"></figure>
-<h2 id="直方图均衡化">直方图均衡化</h2>
-<p>通过直方图均衡化，可以让原始图像灰度级变得均匀，色彩也就会趋于平衡，具体操作如下</p>
-<ul>
-<li>计算累计直方图</li>
-<li>对累积直方图进行区间转换<br>
-####dst=cv2.quealizeHist(src)</li>
-<li>src:单通道的原始图像</li>
-<li>dst：直方图均衡化处理的结果<br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">#直方图均衡化
-equ = cv2.equalizeHist(img)
-plt.hist(equ.ravel(),256)
-plt.show()
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="https://WalkingPineapple.github.io/post-images/1581511121179.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>

@@ -1,0 +1,561 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>重拾HTML - 摇摇晃摇</title>
+<link rel="shortcut icon" href="https://WalkingPineapple.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://WalkingPineapple.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="重拾HTML - 摇摇晃摇 - Atom Feed" href="https://WalkingPineapple.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="前端知识以前已经学过一些，但是由于工作需要，特地想写博客顺便回忆一下，写的不对的地方，望指出立马改正
+HTML
+HTML(Hypertext Markup langurage）超文本标记语言
+开发环境
+
+Chrome浏览器
+WebStorm..." />
+  <meta property="og:title" content="重拾HTML - 摇摇晃摇">
+  <meta property="og:description" content="前端知识以前已经学过一些，但是由于工作需要，特地想写博客顺便回忆一下，写的不对的地方，望指出立马改正
+HTML
+HTML(Hypertext Markup langurage）超文本标记语言
+开发环境
+
+Chrome浏览器
+WebStorm..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://WalkingPineapple.github.io/chong-shi-html/" />
+  <meta property="og:image" content="https://WalkingPineapple.github.io/post-images/chong-shi-html.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="重拾HTML - 摇摇晃摇">
+  <meta name="twitter:description" content="前端知识以前已经学过一些，但是由于工作需要，特地想写博客顺便回忆一下，写的不对的地方，望指出立马改正
+HTML
+HTML(Hypertext Markup langurage）超文本标记语言
+开发环境
+
+Chrome浏览器
+WebStorm...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://WalkingPineapple.github.io/chong-shi-html/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://WalkingPineapple.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://WalkingPineapple.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      摇摇晃摇
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          重拾HTML
+        </h1>
+        
+          <img src="https://WalkingPineapple.github.io/post-images/chong-shi-html.png" alt="重拾HTML" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-09-22 · 10 min read</div>
+          
+            <a href="https://WalkingPineapple.github.io/k2FEoR1Xe/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              前端
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p><strong>前端知识以前已经学过一些，但是由于工作需要，特地想写博客顺便回忆一下，写的不对的地方，望指出立马改正</strong></p>
+<h2 id="html">HTML</h2>
+<p>HTML(Hypertext Markup langurage）超文本标记语言</p>
+<h2 id="开发环境">开发环境</h2>
+<ul>
+<li>Chrome浏览器</li>
+<li>WebStorm</li>
+</ul>
+<h2 id="基本结构">基本结构</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;!-- 头部信息 通常用来引入外部CSS样式以及JavaScript等--&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+ &lt;title&gt;HTML基本结构&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--网页展示部分--&gt;
+&lt;/body&gt;
+&lt;/html&gt;&lt;/pre&gt;
+</code></pre>
+<h2 id="编码设置">编码设置</h2>
+<p><strong>在我们开发过程中，可能会因为的项目需求设置网页不同的编码</strong></p>
+<pre><code>    在HTML文件中，常见使用编码格式有如下
+        1.UTF-8：国际统一编码，英文使用8位为一字节，中文使用24位为三个字节
+        2.GB2312：国标编码
+        3.GBK：GB2312的升级版，英文和中文都是用双字节，中文支持友好，使用范围没有UTF-8广
+        
+</code></pre>
+<h3 id="设置编码">设置编码</h3>
+<p><em><em>在HTML中，我们通常使用meta标签 申明网页编码</em>,meta标签使用有很多，后面将会逐一介绍</em>*</p>
+<pre><code class="language-html">&lt;meta  charset=&quot;encode type&quot;&gt;
+&lt;!-- eg --&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta charset=&quot;GBK&quot;&gt;
+&lt;meta charset=&quot;GB2312&quot;&gt;
+</code></pre>
+<h3 id="meta标签">meta标签</h3>
+<p><strong>meta写在网页头部中，可以指定网页类型、编码等</strong></p>
+<pre><code>http-equiv:模拟一个 HTTP 响应头。
+content:指定文本类型
+</code></pre>
+<h2 id="标题标签">标题标签</h2>
+<p><strong>常见的标签主要有h1-h6,其中align属性（right left justify center）定义了标签的位置</strong></p>
+<pre><code class="language-html">            &lt;h1 align=&quot;center&quot;&gt;This is H1&lt;/h1&gt;
+            &lt;h2 align=&quot;right&quot;&gt;This is H1&lt;/h2&gt;
+            &lt;h3 align=&quot;left&quot;&gt;This is H1&lt;/h3&gt;
+            &lt;h4 align=&quot;justify&quot;&gt;This is H1&lt;/h4&gt;
+            &lt;h5&gt;This is H1&lt;/h5&gt;
+            &lt;h6&gt;This is H1&lt;/h6&gt;
+</code></pre>
+<h2 id="无序列表">无序列表</h2>
+<p><strong>无序列表类似word中的项目符号，常见项目符号由原点（disc）、方形（square）、空心原点（circle）组成，可以通过Type属性进行设置</strong></p>
+<pre><code class="language-html">            &lt;ul type=&quot;disc&quot;&gt;
+                &lt;li&gt;disc list item1&lt;/li&gt;
+                &lt;li&gt;disc list item2&lt;/li&gt;
+                &lt;li&gt;disc list item3&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;ul type=&quot;square&quot;&gt;
+                &lt;li&gt;square list item1&lt;/li&gt;
+                &lt;li&gt;square list item2&lt;/li&gt;
+                &lt;li&gt;square list item3&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;ul type=&quot;circle&quot;&gt;
+                &lt;li&gt;circle list item1&lt;/li&gt;
+                &lt;li&gt;circle list item2&lt;/li&gt;
+                &lt;li&gt;circle list item3&lt;/li&gt;
+            &lt;/ul&gt;
+</code></pre>
+<h2 id="有序列表">有序列表</h2>
+<p><strong>有序列表通过数字、字母、罗马数字、i等将列表项顺序排序，可以通过Type属性设置</strong></p>
+<pre><code class="language-html">            &lt;ol&gt;
+                &lt;li&gt;number list item1&lt;/li&gt;
+                &lt;li&gt;number list item2&lt;/li&gt;
+                &lt;li&gt;number list item3&lt;/li&gt;
+            &lt;/ol&gt;
+            &lt;ol type=&quot;A&quot;&gt;
+                &lt;li&gt;letter list item1&lt;/li&gt;
+                &lt;li&gt;letter list item2&lt;/li&gt;
+                &lt;li&gt;letter list item3&lt;/li&gt;
+            &lt;/ol&gt;
+            &lt;ol type=&quot;i&quot;&gt;
+                &lt;li&gt;i list item1&lt;/li&gt;
+                &lt;li&gt;i list item2&lt;/li&gt;
+                &lt;li&gt;i list item3&lt;/li&gt;
+            &lt;/ol&gt;
+            &lt;ol type=&quot;I&quot;&gt;
+                &lt;li&gt;roma list item1&lt;/li&gt;
+                &lt;li&gt;roma list item2&lt;/li&gt;
+                &lt;li&gt;roma list item3&lt;/li&gt;
+            &lt;/ol&gt;
+</code></pre>
+<h2 id="图像标签">图像标签</h2>
+<p><strong>图像标签为img标签，主要属性有图像url（src）、图像代替文本（alt）图像高宽（height、width）</strong></p>
+<pre><code class="language-html">&lt;img src=&quot;../image/Logo.png&quot; alt=&quot;This is a logo&quot; width=&quot;200px&quot; height=&quot;200px&quot;&gt;
+</code></pre>
+<h2 id="超链接标签">超链接标签</h2>
+<p><strong>超链接属性主要有链接地址（href） 链接的目标窗口(target[_self,_blank,_top,_parent]) 链接命名（name）</strong></p>
+<pre><code class="language-html">&lt;a href=&quot;#html_top&quot; title=&quot;Go to&quot; name=&quot;goto&quot; &gt;
+                &lt;p&gt;Go top&lt;/p&gt;
+            &lt;/a&gt;
+</code></pre>
+<h2 id="表格">表格</h2>
+<p>**HTML中表格常常由表格（table）、行（tr）、单元格（td）、带表格头的表格（th）、带标题的表格（caption）、带结构的表格（thead、tbody、tfoot）组成<br>
+**</p>
+<pre><code class="language-html">            &lt;table border=&quot;1&quot; cellspacing=&quot;5&quot; cellpadding=&quot;100&quot;&gt;
+                &lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+            &lt;/table&gt;
+</code></pre>
+<p><img src="https://WalkingPineapple.github.io/post-images/1600705307899.png" alt="" loading="lazy">![<br>
+<strong>其中cellpadding为单元格与其内容之间的距离，cellspacing是单元格之间的空白，其余属性为通用属性，border为边框 可以查阅手册</strong></p>
+<h3 id="表格实例操作">表格实例操作</h3>
+<p><strong>表格跨行跨列操作</strong></p>
+<pre><code class="language-html">&lt;table border=&quot;1&quot;&gt;
+                &lt;caption&gt;菜品营业额&lt;/caption&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                    &lt;th rowspan=&quot;2&quot;&gt; 菜品&lt;/th&gt;
+                    &lt;th colspan=&quot;2&quot;&gt;2018&lt;/th&gt;
+                    &lt;th rowspan=&quot;2&quot;&gt;2019&lt;/th&gt;
+                    &lt;th rowspan=&quot;2&quot;&gt;2020&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;上半年&lt;/th&gt;
+                        &lt;th&gt;下半年&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;老J涮肉&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        
+                        &lt;td&gt;老J串串&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                        &lt;td&gt;3000&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+</code></pre>
+<ul>
+<li>rowspan:单元格列数合并</li>
+<li>colspan:单元格行数合并</li>
+</ul>
+<p><strong>在实际开发过程中，table表格使用次数很少，现流行Vue等多种前端框架即可快速实现表格内容展示</strong><br>
+<strong>其中td、tr、th有很多属性未介绍，但这些属性</strong></p>
+<h2 id="表单处理">表单处理</h2>
+<p><strong>HTML表单元素有很多，常见的有输入框（input）、菜单和列表标签（select）、菜单和列表项目（option）、文本域（textarea）、分组（optgroup）</strong></p>
+<h3 id="表单元素案例">表单元素案例</h3>
+<p><strong>表单元素很多，具体使用案例如下</strong></p>
+<pre><code>&lt;h1 align=&quot;center&quot;&gt;User Sign Index&lt;/h1&gt;
+		&lt;table align=&quot;center&quot; &gt;
+			&lt;thead&gt;								
+			&lt;/thead&gt;
+
+			&lt;tbody&gt;
+				&lt;form action=&quot;后端.php&quot; method=&quot;post&quot;&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						username：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;text&quot; name=&quot;username&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the username&quot; /&gt;
+						&lt;/td&gt;
+						
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						password：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the password&quot; /&gt;
+						&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						mail：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;text&quot; name=&quot;mail&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the mail&quot; /&gt;
+						&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						Verification code：
+					&lt;/td&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;text&quot; name=&quot;verification&quot; id=&quot;&quot; value=&quot;&quot; placeholder=&quot;Please input the Verification code&quot; size=&quot;20&quot;/&gt;
+						&lt;/td&gt;
+						&lt;td&gt;
+							&lt;img src=&quot;../image/vertification.png&quot; width=&quot;50px&quot; height=&quot;20px&quot;&gt;
+						&lt;/td&gt;
+						
+				&lt;/tr&gt;
+				&lt;tr align=&quot;center&quot;&gt;
+					&lt;td&gt;
+						&lt;input type=&quot;submit&quot; id=&quot;&quot; name=&quot;GO&quot; /&gt;
+						&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;/form&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+</code></pre>
+<p><img src="https://WalkingPineapple.github.io/post-images/1600705286989.png" alt="" loading="lazy"><br>
+<strong>特别提示：Get请求和POST请求可以移步HTTP协议有详细介绍</strong></p>
+<h2 id="块级标签和行内标签">块级标签和行内标签</h2>
+<p><strong>在HTML中，主要的标签分为两类，一类是块级标签，一类是行内标签</strong></p>
+<pre><code>块级标签顾名思义就是块级元素，例如DIV标签、P标签等等，
+行内标签最常见的就是span标签
+其中，行内元素不会单独占用一行，直至排不下才换行，但是块级标签独占一行。
+块级标签的布局，将会在下一篇CSS基础 盒子模型中介绍
+</code></pre>
+<h2 id="总结">总结</h2>
+<p><strong>回顾的很简单，毕竟只是回顾，记不起的还需要查手册或资料，从现有开发中，很多前端框架集成已经慢慢将原生的HTML技术取而代之，直接调用插件模块即可，但是并不代表不掌握，换句话说,HTML将是一切框架的基础，无论是前端或后端工程师，都应该掌握学习。<br>
+下一篇，将会回顾CSS基础</strong></p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  我们看到的只是冰山一角。
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#html">HTML</a></li>
+<li><a href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83">开发环境</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84">基本结构</a></li>
+<li><a href="#%E7%BC%96%E7%A0%81%E8%AE%BE%E7%BD%AE">编码设置</a>
+<ul>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E7%BC%96%E7%A0%81">设置编码</a></li>
+<li><a href="#meta%E6%A0%87%E7%AD%BE">meta标签</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A0%87%E9%A2%98%E6%A0%87%E7%AD%BE">标题标签</a></li>
+<li><a href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">无序列表</a></li>
+<li><a href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">有序列表</a></li>
+<li><a href="#%E5%9B%BE%E5%83%8F%E6%A0%87%E7%AD%BE">图像标签</a></li>
+<li><a href="#%E8%B6%85%E9%93%BE%E6%8E%A5%E6%A0%87%E7%AD%BE">超链接标签</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">表格</a>
+<ul>
+<li><a href="#%E8%A1%A8%E6%A0%BC%E5%AE%9E%E4%BE%8B%E6%93%8D%E4%BD%9C">表格实例操作</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86">表单处理</a>
+<ul>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E6%A1%88%E4%BE%8B">表单元素案例</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9D%97%E7%BA%A7%E6%A0%87%E7%AD%BE%E5%92%8C%E8%A1%8C%E5%86%85%E6%A0%87%E7%AD%BE">块级标签和行内标签</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://WalkingPineapple.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://WalkingPineapple.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: '',
+    appKey: '',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨指点一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>
