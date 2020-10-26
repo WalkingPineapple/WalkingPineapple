@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://WalkingPineapple.github.io</id>
     <title>摇摇晃摇</title>
-    <updated>2020-09-21T16:22:58.714Z</updated>
+    <updated>2020-10-26T15:25:57.827Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://WalkingPineapple.github.io"/>
     <link rel="self" href="https://WalkingPineapple.github.io/atom.xml"/>
@@ -11,6 +11,82 @@
     <logo>https://WalkingPineapple.github.io/images/avatar.png</logo>
     <icon>https://WalkingPineapple.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 摇摇晃摇</rights>
+    <entry>
+        <title type="html"><![CDATA[有趣的事件冒泡与事件捕获]]></title>
+        <id>https://WalkingPineapple.github.io/you-qu-de-shi-jian-mou-pao-yu-shi-jian-bu-huo/</id>
+        <link href="https://WalkingPineapple.github.io/you-qu-de-shi-jian-mou-pao-yu-shi-jian-bu-huo/">
+        </link>
+        <updated>2020-10-26T15:21:27.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="事件冒泡">事件冒泡</h2>
+<pre><code>事件冒泡：在一个对象上述触发某类事件，事件会从最内层的元素开始发生，一直向上传播，直到传到最顶层document
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;EventBubbling&amp;&amp;EventCapturing&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div&gt;
+            &lt;button type=&quot;button&quot;&gt;Click&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>以上述代码为例，当我们的点击button按钮发生Click事件时，事件会从内向外执行，具体顺序为：<br>
+<strong>button&gt;div&gt;body&gt;html&gt;document</strong></p>
+<h2 id="事件捕获">事件捕获</h2>
+<pre><code>事件捕获与事件冒泡正好相反，事件会从最外层的元素开始发生，一直向内传播，直到传至最底层的元素。
+</code></pre>
+<p>还是以上述代码为例，如果进行事件捕获，事件捕获顺序是：<br>
+<strong>document&gt;html&gt;body&gt;div&gt;button</strong></p>
+<p><strong>W3C标准下事件捕获的优先级通常优先于事件冒泡</strong></p>
+<h2 id="addeventlistener">addEventListener</h2>
+<pre><code>addEventListener方法用来为一个特定元素绑定一个事件处理函数，并通过传入布尔型参数指定事件捕获还是冒泡
+</code></pre>
+<p><code>element.addEventListener(event,function,useCapture)</code></p>
+<p><strong>如果指定布尔值为true，则事件在捕获阶段执行，如果为false，则在冒泡阶段执行</strong></p>
+<p>具体可以参照以下代码为例：</p>
+<pre><code class="language-html">&lt;div id=&quot;app1&quot;&gt;app1
+			&lt;div id=&quot;app2&quot;&gt;app2&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			document.getElementById(&quot;app1&quot;).addEventListener(&quot;click&quot;,function(e){
+				console.log(&quot;app1&quot;)
+			},false);
+			document.getElementById(&quot;app2&quot;).addEventListener(&quot;click&quot;,function(e){
+				console.log(&quot;app2&quot;)
+			},false);
+		&lt;/script&gt;
+</code></pre>
+<p>设置为false时，则执行事件捕获，如果点击app2，则会先从内执行到外，先打印app2再打印app1，反之事件捕获亦是如此。</p>
+<h2 id="阻止冒泡">阻止冒泡</h2>
+<p>阻止事件冒泡的方法有很三种，分别是给子级加<strong>event.stopPropagation()事件、在事件处理函数中返回false、让触发事件的元素等于绑定事件的元素</strong>，但是正好最近正在学习Vue，特地介绍以下Vue中阻止事件冒泡的方法。</p>
+<h3 id="vue阻止事件冒泡">Vue阻止事件冒泡</h3>
+<p>Vue中有很多的事件修饰符，其中stop就可以阻止事件冒泡，具体事例代码如下：</p>
+<pre><code class="language-html">&lt;div id=&quot;app&quot;&gt;
+		&lt;div class=&quot;inner&quot; @click=&quot;innerClicker&quot;&gt;&lt;input type=&quot;button&quot; value=&quot;Click&quot; @click.stop=&quot;btnClicker&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+		&lt;script src=&quot;../../vue%20(1).js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			const app =new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				methods:{
+					innerClicker(){
+						console.log(&quot;innerClick点击事件&quot;)
+					},
+					btnClicker(){
+						console.log(&quot;button点击事件&quot;)
+					}
+				}
+			})
+		&lt;/script&gt;
+</code></pre>
+<p>当我们点击button按钮时，将不再执行外面div的click事件。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[重拾HTML]]></title>
         <id>https://WalkingPineapple.github.io/chong-shi-html/</id>
@@ -695,70 +771,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <h3 id="参考文献">参考文献</h3>
 <p>[1]维基百科<br>
 [2]统计之美——人工智能时代的科学思维</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[图像傅里叶变换]]></title>
-        <id>https://WalkingPineapple.github.io/tu-xiang-fu-li-xie-bian-huan/</id>
-        <link href="https://WalkingPineapple.github.io/tu-xiang-fu-li-xie-bian-huan/">
-        </link>
-        <updated>2020-02-13T13:24:12.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>傅里叶变换数学推导以后有时间补博客后</strong></p>
-<h1 id="傅里叶变换">傅里叶变换</h1>
-<p>图像处理除了对空间域处理，还可以在频率域进行处理。而将图像的空间域变换到频率域的较为广泛方法就是傅里叶变换。<br>
-<strong>傅里叶变换数学推导以后有时间补博客后</strong>，而我们只需要知道：”<strong>任何周期函数都可以表示为不同频率的正弦函数和的形式</strong>“<br>
-可以参考wiki上的一张gif如下，或者直接移步知乎大佬的掐死教程哈。</p>
-<p><img src="https://WalkingPineapple.github.io/post-images/1581600311071.gif" alt="" loading="lazy"><br>
-​<br>
-通过傅里叶变化，我们可以得到图像的高频和低频：</p>
-<ul>
-<li>高频：图像灰度变化比较剧烈，频率越大，变化就越剧烈。比如 轮廓</li>
-<li>低频：图像灰度变化比较慢，频率越小，变化就缓慢<br>
-在OpenCV中，提供了傅里叶变换和傅里叶逆变换的两个函数，先来说傅里叶变换:</li>
-</ul>
-<h2 id="opencv傅里叶变换">OpenCV傅里叶变换</h2>
-<p>cv2.dft(img,flags)</p>
-<ul>
-<li>img：原始图像，必须为np.float3格式</li>
-<li>flags：转换标志，通常为cv2.DFT_COMPLEX_OUTPUT<br>
-在通过傅里叶变换后，频率为0的分量处于左上角，为了处理方便，我们通常使用numpy.fft.fftshift()移到中心位置，最后，还需要通过cv2.magnitude()，计算出我们目标图像的幅度值，逆变换与之类似。<br>
-<strong>实际代码演示</strong></li>
-</ul>
-<pre><code class="language-python">img=cv2.imread('hh.jpg',cv2.IMREAD_GRAYSCALE)
-img_float32=np.float32(img)
-#傅里叶变换
-dft=cv2.dft(img_float32,flags=cv2.DFT_COMPLEX_OUTPUT)
-print(dft)
-dft_fit=np.fft.fftshift(dft);
-print(dft_fit)
-magnitude_spectrum = 20*np.log(cv2.magnitude(dft_fit[:,:,0],dft_fit[:,:,1]))
-print(magnitude_spectrum)
-plt.subplot(121),plt.imshow(img, cmap = 'gray')
-plt.title('Input Image'), plt.xticks([]), plt.yticks([])
-plt.subplot(122),plt.imshow(magnitude_spectrum, cmap = 'gray')
-plt.title('Magnitude Spectrum'), plt.xticks([]), plt.yticks([])
-plt.show()
-</code></pre>
-<p>​<img src="https://WalkingPineapple.github.io/post-images/1581600298591.png" alt="" loading="lazy"></p>
-<h2 id="低通滤波器和高通滤波器">低通滤波器和高通滤波器</h2>
-<p>低通滤波器和高通滤波器类似，低通滤波器就是保留低频信号，而高通则是保留高频信号，前者可以让图片变得模糊，后者则是让图像的细节（轮廓）更为增强，我们可以通过设置一个掩膜，让非保留的值都置位0即可<br>
-<strong>实际代码演示</strong></p>
-<pre><code class="language-python">#设置掩膜
-#找到中心位置
-rows,cols=img.shape
-crow,ccol=int(rows/2),int(cols/2)
-mask=np.zeros((rows,cols,2),np.uint8)
-#高通
-# mask=np.ones((rows,cols,2),np.uint8)
-mask[crow-30:crow+30,ccol-30:ccol+30]=1
-​
-fshift = dft_fit*mask
-f_ishift = np.fft.ifftshift(fshift)
-img_back = cv2.idft(f_ishift)
-img_back = cv2.magnitude(img_back[:,:,0],img_back[:,:,1])
-</code></pre>
-<p><img src="https://WalkingPineapple.github.io/post-images/1581600290575.png" alt="" loading="lazy"><br>
-字符：22 / 1,614</p>
 ]]></content>
     </entry>
 </feed>
